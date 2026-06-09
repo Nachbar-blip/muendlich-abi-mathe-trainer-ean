@@ -1,0 +1,10 @@
+# Textdateien im Repo einheitlich mit LF speichern (Windows-CRLF-Warnungen vermeiden)
+* text=auto eol=lf
+
+# Binärdateien nicht anfassen
+*.woff2 binary
+*.woff binary
+*.ttf binary
+*.png binary
+*.jpg binary
+*.docx binary

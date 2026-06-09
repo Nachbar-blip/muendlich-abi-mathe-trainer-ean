@@ -1,0 +1,7 @@
+# Python-Tooling fuer Tests & Generierung (die App selbst braucht KEIN Python).
+sympy>=1.14        # tools/check_math.py — Mathe-Nachrechnung
+pytest>=9          # tests/ — Inhalts-/Mathe-/Scope-Validierung
+python-docx>=1.1   # tools/make_qr_docx.py — QR-Dokument
+qrcode>=7          # tools/make_qr_docx.py — QR-Code
+# optional, nur zur QR-Verifikation:
+# opencv-python-headless

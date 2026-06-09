@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mündlich-Abi Mathe — EAN-Trainer</title>
+
+  <!-- KaTeX lokal (kein CDN, file://-tauglich) -->
+  <link rel="stylesheet" href="vendor/katex/katex.min.css">
+  <script src="vendor/katex/katex.min.js"></script>
+  <script src="vendor/katex/auto-render.min.js"></script>
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="kopf">
+    <a class="kopf-titel" href="#/start">Mündlich-Abi Mathe · EAN</a>
+  </header>
+
+  <!-- Wurzel-Container: ui.js zeichnet hier die jeweilige View hinein -->
+  <div id="app"></div>
+
+  <!-- Reihenfolge ist wichtig: erst Engine, dann Inhalt, dann UI -->
+  <script src="engine.js"></script>
+  <script src="content.js"></script>
+  <script src="ui.js"></script>
+</body>
+</html>

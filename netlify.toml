@@ -1,0 +1,4 @@
+# Netlify: nur den App-Ordner veroeffentlichen (kein Build noetig).
+[build]
+  publish = "app"
+  command = ""

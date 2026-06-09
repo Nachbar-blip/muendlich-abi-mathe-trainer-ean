@@ -1,0 +1,15 @@
+{
+  "verbote": [
+    "(?<![a-zäöüß])e\\^",
+    "\\\\ln",
+    "(?<![a-zäöüß])ln\\(",
+    "Kettenregel",
+    "Quotientenregel",
+    "windschief",
+    "normalverteilt",
+    "Normalverteilung",
+    "Signifikanz",
+    "Hypothesentest",
+    "Binomialverteilung"
+  ]
+}

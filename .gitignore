@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+node_modules/
+.DS_Store
+tests/.cache/
+recordings/
+tools/_qa_shots/
+*.tgz
+wf_out.json
+
+# Original-Prüfungen NICHT committen/veröffentlichen (lokale Referenz für tools/extract_exams.py)
+*.docx

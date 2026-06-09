@@ -1,0 +1,622 @@
+/* ===========================================================================
+   Mündlich-Abi Mathe — Trainer · Stylesheet
+   Mobil zuerst, responsiv. Kein externes Framework.
+   =========================================================================== */
+
+:root {
+  --akzent-analysis: #2E75B6;
+  --akzent-geometrie: #70AD47;
+
+  --analysis-bg: #E7F3FF;
+  --geometrie-bg: #E2F0D9;
+
+  --text: #1f2933;
+  --text-leise: #5b6770;
+  --rahmen: #d7dde3;
+  --flaeche: #ffffff;
+  --hintergrund: #f4f6f8;
+
+  --radius: 12px;
+  --schatten: 0 1px 3px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
+
+  --abstand: 16px;
+  --max-breite: 880px;
+
+  --touch: 48px; /* Mindesthöhe für Touch-Ziele */
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.5;
+  color: var(--text);
+  background: var(--hintergrund);
+}
+
+/* ---------- Kopfzeile ----------------------------------------------------- */
+.kopf {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--flaeche);
+  border-bottom: 1px solid var(--rahmen);
+  box-shadow: var(--schatten);
+}
+.kopf-titel {
+  display: block;
+  max-width: var(--max-breite);
+  margin: 0 auto;
+  padding: 14px var(--abstand);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text);
+  text-decoration: none;
+}
+
+/* ---------- App-Container -------------------------------------------------- */
+#app {
+  max-width: var(--max-breite);
+  margin: 0 auto;
+  padding: var(--abstand);
+}
+
+h1 { font-size: 1.5rem; margin: 0 0 0.2em; }
+h2 { font-size: 1.2rem; margin: 0 0 0.4em; }
+p  { margin: 0 0 0.8em; }
+
+a { color: var(--akzent-analysis); }
+
+/* ---------- Hinweis / Warnung (z. B. Storage-Fallback) -------------------- */
+.hinweis {
+  margin: 0 0 var(--abstand);
+  padding: 12px 14px;
+  border-radius: var(--radius);
+  background: #fff7e6;
+  border: 1px solid #f0d49a;
+  color: #6b4e00;
+  font-size: 0.92rem;
+}
+.fehler {
+  background: #fdecea;
+  border-color: #f3b6b0;
+  color: #7a1f17;
+}
+
+/* ---------- Buttons / Aktionsleiste --------------------------------------- */
+.aktionen {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: var(--abstand) 0;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: var(--touch);
+  padding: 0 18px;
+  border: 1px solid var(--rahmen);
+  border-radius: var(--radius);
+  background: var(--flaeche);
+  color: var(--text);
+  font: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: var(--schatten);
+  transition: transform 0.05s ease, background 0.15s ease;
+}
+.btn:hover { background: #fafbfc; }
+.btn:active { transform: translateY(1px); }
+
+.btn-primaer {
+  background: var(--akzent-analysis);
+  border-color: var(--akzent-analysis);
+  color: #fff;
+}
+.btn-primaer:hover { background: #2766a0; }
+
+.btn-hervor {
+  background: #fff3cd;
+  border-color: #f0d49a;
+  color: #6b4e00;
+}
+
+/* Versteckter Datei-Input für „Laden" */
+.datei-input { display: none; }
+
+/* ---------- Startbildschirm: Gebiets-Sektionen ---------------------------- */
+.gebiete {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--abstand);
+}
+
+.gebiet {
+  border-radius: var(--radius);
+  padding: 16px;
+  border: 1px solid var(--rahmen);
+  background: var(--flaeche);
+}
+.gebiet--analysis {
+  border-top: 4px solid var(--akzent-analysis);
+  background: linear-gradient(var(--analysis-bg), var(--flaeche) 60px);
+}
+.gebiet--geometrie {
+  border-top: 4px solid var(--akzent-geometrie);
+  background: linear-gradient(var(--geometrie-bg), var(--flaeche) 60px);
+}
+.gebiet h2 { display: flex; align-items: center; gap: 8px; }
+.gebiet--analysis h2  { color: var(--akzent-analysis); }
+.gebiet--geometrie h2 { color: var(--akzent-geometrie); }
+
+/* ---------- Themenliste ---------------------------------------------------- */
+.themen-liste {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.themen-liste .leer {
+  color: var(--text-leise);
+  font-style: italic;
+  padding: 8px 2px;
+}
+
+.thema {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: var(--touch);
+  padding: 10px 14px;
+  border: 1px solid var(--rahmen);
+  border-radius: var(--radius);
+  background: var(--flaeche);
+  color: var(--text);
+  text-decoration: none;
+  box-shadow: var(--schatten);
+}
+.thema:hover { background: #fafbfc; }
+.thema-name { font-weight: 600; }
+
+/* Stufen-Marker 1/2/3 */
+.stufen {
+  display: inline-flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+.stufe {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  font-size: 0.8rem;
+  font-weight: 700;
+  border: 2px solid var(--rahmen);
+  color: var(--text-leise);
+  background: var(--flaeche);
+}
+.stufe--erledigt {
+  color: #fff;
+  border-color: transparent;
+}
+.gebiet--analysis  .stufe--erledigt { background: var(--akzent-analysis); }
+.gebiet--geometrie .stufe--erledigt { background: var(--akzent-geometrie); }
+
+/* ---------- Stub-Views ----------------------------------------------------- */
+.zurueck {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: var(--abstand);
+  font-weight: 600;
+  text-decoration: none;
+}
+.platzhalter {
+  padding: 24px;
+  border: 1px dashed var(--rahmen);
+  border-radius: var(--radius);
+  background: var(--flaeche);
+  color: var(--text-leise);
+  text-align: center;
+}
+
+.karte {
+  padding: 16px;
+  border: 1px solid var(--rahmen);
+  border-radius: var(--radius);
+  background: var(--flaeche);
+  box-shadow: var(--schatten);
+  margin-bottom: var(--abstand);
+}
+
+/* ---------- Trainer-Views (Stufen 1–3, fällig, Diagnose) ------------------ */
+
+/* Fortschritts-/Kontextzeile oben in einer Trainer-View */
+.fortschritt {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 0 0 var(--abstand);
+  color: var(--text-leise);
+  font-size: 0.92rem;
+}
+.fortschritt .schritt-zahl { font-weight: 600; }
+
+/* Frage-/Aufgabentext */
+.frage {
+  font-size: 1.05rem;
+  margin: 0 0 14px;
+}
+
+/* Sortierbare Schritte (Stufe 1) */
+.schritt-liste {
+  list-style: none;
+  margin: 0 0 var(--abstand);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  counter-reset: schritt;
+}
+.schritt {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid var(--rahmen);
+  border-radius: var(--radius);
+  background: var(--flaeche);
+  box-shadow: var(--schatten);
+}
+.schritt-nr {
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--analysis-bg);
+  color: var(--akzent-analysis);
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+.schritt-text { flex: 1; }
+.schritt-pfeile {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 4px;
+  flex-shrink: 0;
+}
+.pfeil-btn {
+  width: 34px;
+  height: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 1px solid var(--rahmen);
+  border-radius: 6px;
+  background: var(--flaeche);
+  color: var(--text);
+  font: inherit;
+  font-size: 0.8rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.pfeil-btn:hover:not(:disabled) { background: #fafbfc; }
+.pfeil-btn:disabled { opacity: 0.35; cursor: default; }
+
+/* Antwort-Eingaben (Stufe 2) */
+.antwort-feld {
+  display: block;
+  width: 100%;
+  min-height: var(--touch);
+  padding: 0 14px;
+  font: inherit;
+  border: 1px solid var(--rahmen);
+  border-radius: var(--radius);
+  background: var(--flaeche);
+  color: var(--text);
+  margin-bottom: 12px;
+}
+.antwort-feld:focus { outline: 2px solid var(--akzent-analysis); outline-offset: 1px; }
+
+.optionen-liste {
+  list-style: none;
+  margin: 0 0 12px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.option-btn {
+  display: block;
+  width: 100%;
+  text-align: left;
+  min-height: var(--touch);
+  padding: 10px 14px;
+  border: 1px solid var(--rahmen);
+  border-radius: var(--radius);
+  background: var(--flaeche);
+  color: var(--text);
+  font: inherit;
+  cursor: pointer;
+  box-shadow: var(--schatten);
+}
+.option-btn:hover:not(:disabled) { background: #fafbfc; }
+.option-btn:disabled { cursor: default; }
+.option-btn.richtig {
+  border-color: var(--akzent-geometrie);
+  background: var(--geometrie-bg);
+}
+.option-btn.falsch {
+  border-color: #f3b6b0;
+  background: #fdecea;
+}
+
+/* Rückmeldung korrekt/falsch */
+.rueckmeldung {
+  margin: 0 0 12px;
+  padding: 12px 14px;
+  border-radius: var(--radius);
+  font-weight: 600;
+}
+.rueckmeldung--ok {
+  background: var(--geometrie-bg);
+  border: 1px solid var(--akzent-geometrie);
+  color: #2f5e1f;
+}
+.rueckmeldung--nope {
+  background: #fdecea;
+  border: 1px solid #f3b6b0;
+  color: #7a1f17;
+}
+
+/* Aufklappbare Hilfen (Tipp / Lösungsweg / Erwartungsbild) */
+.hilfe-box {
+  margin: 0 0 12px;
+  padding: 12px 14px;
+  border: 1px solid var(--rahmen);
+  border-left: 4px solid var(--akzent-analysis);
+  border-radius: var(--radius);
+  background: var(--analysis-bg);
+}
+.hilfe-box h3 { font-size: 0.95rem; margin: 0 0 6px; }
+
+.erwartung-liste {
+  margin: 8px 0 0;
+  padding-left: 1.2em;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Selbsteinschätzung (4 Bewertungsknöpfe Stufe 3 / fällig) */
+.bewertung {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin: var(--abstand) 0;
+}
+.bewertung .btn { min-height: 52px; }
+.bew--wiederholen { background: #fdecea; border-color: #f3b6b0; color: #7a1f17; }
+.bew--schwer      { background: #fff3cd; border-color: #f0d49a; color: #6b4e00; }
+.bew--gut         { background: var(--analysis-bg); border-color: var(--akzent-analysis); color: var(--akzent-analysis); }
+.bew--sicher      { background: var(--geometrie-bg); border-color: var(--akzent-geometrie); color: #2f5e1f; }
+
+/* Fehlertyp-Reflexion (Stufe 2) */
+.reflexion {
+  margin: 0 0 12px;
+  padding: 12px 14px;
+  border: 1px dashed var(--rahmen);
+  border-radius: var(--radius);
+  background: var(--flaeche);
+}
+.reflexion p { margin: 0 0 8px; font-size: 0.92rem; color: var(--text-leise); }
+.reflexion-knoepfe { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  padding: 8px 12px;
+  border: 1px solid var(--rahmen);
+  border-radius: 999px;
+  background: var(--flaeche);
+  color: var(--text);
+  font: inherit;
+  font-size: 0.88rem;
+  cursor: pointer;
+}
+.chip:hover:not(:disabled) { background: #fafbfc; }
+.chip.gewaehlt { background: var(--analysis-bg); border-color: var(--akzent-analysis); color: var(--akzent-analysis); }
+.chip:disabled { opacity: 0.6; cursor: default; }
+
+/* Audio-Aufnahme (Phase 7) */
+.audio-box {
+  margin: 0 0 12px;
+  padding: 12px 14px;
+  border: 1px solid var(--rahmen);
+  border-radius: var(--radius);
+  background: var(--flaeche);
+}
+.audio-box .audio-hinweis { font-size: 0.85rem; color: var(--text-leise); margin: 6px 0 0; }
+.audio-box audio { display: block; width: 100%; margin-top: 10px; }
+.aufnahme-laeuft { color: #7a1f17; font-weight: 600; }
+
+/* Diagnose-Auswertung */
+.diagnose-ergebnis {
+  list-style: none;
+  margin: 0 0 var(--abstand);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.diagnose-zeile {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 14px;
+  border: 1px solid var(--rahmen);
+  border-radius: var(--radius);
+  background: var(--flaeche);
+}
+.bewertungs-marke {
+  flex-shrink: 0;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+.marke--sicher { background: var(--geometrie-bg); color: #2f5e1f; }
+.marke--luft   { background: #fff3cd; color: #6b4e00; }
+
+/* ---------- Prüfungs-Simulator (Phase 8) ---------------------------------- */
+
+/* Kopfleiste: Phase + Gebiets-Badge */
+.sim-leiste {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 12px;
+}
+.sim-phase { font-weight: 700; color: var(--text-leise); }
+.sim-gebiet {
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #fff;
+}
+.sim-gebiet--analysis  { background: var(--akzent-analysis); }
+.sim-gebiet--geometrie { background: var(--akzent-geometrie); }
+
+.sim-hinweis { color: var(--text-leise); font-size: 0.95rem; }
+
+/* Countdown-Anzeige */
+.sim-timer {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin: 0 0 var(--abstand);
+  padding: 12px 16px;
+  border: 1px solid var(--rahmen);
+  border-radius: var(--radius);
+  background: var(--flaeche);
+  box-shadow: var(--schatten);
+}
+.sim-uhr {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+.sim-timer--laeuft .sim-uhr { color: var(--akzent-analysis); }
+.sim-timer--aus { border-color: #f0d49a; background: #fff7e6; }
+.sim-timer--aus .sim-uhr { color: #6b4e00; }
+.sim-timer-hinweis { color: #6b4e00; font-weight: 600; font-size: 0.9rem; }
+
+/* Vortrags-Teilaufgaben (a/b/c/d) */
+.sim-teilaufgaben {
+  list-style: none;
+  margin: 0 0 var(--abstand);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  counter-reset: none;
+}
+.sim-teilaufgabe {
+  padding: 14px 16px;
+  border: 1px solid var(--rahmen);
+  border-radius: var(--radius);
+  background: var(--flaeche);
+  box-shadow: var(--schatten);
+}
+.sim-ta-kopf {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+.sim-ta-nr {
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--akzent-analysis);
+}
+.afb-badge {
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  background: var(--analysis-bg);
+  color: var(--akzent-analysis);
+}
+.afb-hinweis { margin: 8px 0 0; font-size: 0.85rem; color: var(--text-leise); }
+
+/* Reflexions-Notiz */
+.sim-notiz {
+  display: block;
+  width: 100%;
+  padding: 10px 14px;
+  font: inherit;
+  border: 1px solid var(--rahmen);
+  border-radius: var(--radius);
+  background: var(--flaeche);
+  color: var(--text);
+  margin: 0 0 12px;
+  resize: vertical;
+}
+.sim-notiz:focus { outline: 2px solid var(--akzent-analysis); outline-offset: 1px; }
+
+/* Empfehlungen mit Rücklinks */
+.sim-empf {
+  margin: 0 0 12px;
+  padding: 14px 16px;
+  border: 1px solid var(--rahmen);
+  border-radius: var(--radius);
+  background: var(--flaeche);
+}
+.sim-empf--analysis  { border-left: 4px solid var(--akzent-analysis); }
+.sim-empf--geometrie { border-left: 4px solid var(--akzent-geometrie); }
+.sim-empf h3 { margin: 0 0 8px; font-size: 1rem; }
+.sim-empf-liste {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.sim-empf-zeile {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 6px 0;
+}
+.sim-empf-links { display: inline-flex; gap: 14px; flex-shrink: 0; }
+
+/* ---------- Ab Tablet: zwei Gebiets-Spalten nebeneinander ----------------- */
+@media (min-width: 700px) {
+  .gebiete { grid-template-columns: 1fr 1fr; }
+  .bewertung { grid-template-columns: repeat(4, 1fr); }
+}
