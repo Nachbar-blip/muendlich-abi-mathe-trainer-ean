@@ -61,18 +61,18 @@ function starteServer() {
     else bad('Start: Gebiete fehlen');
     if (/Heute f.llig/.test(bodyStart)) ok('Start: Faellig-Button da'); else bad('Start: Faellig-Button fehlt');
     const themaLinks = await page.locator('a.thema').count();
-    if (themaLinks === 10) ok('Start: 10 Themen verlinkt'); else bad('Start: ' + themaLinks + ' Themen (erwartet 10)');
+    if (themaLinks === 13) ok('Start: 13 Themen verlinkt'); else bad('Start: ' + themaLinks + ' Themen (erwartet 13)');
     await page.screenshot({ path: path.join(SHOTS, '01-start.png'), fullPage: true });
 
     // --- Stufe 2 (Rechnen) ---
-    await geh(page, '#/thema/ana-extrema/2');
+    await geh(page, '#/thema/ana-eigenschaften/2');
     const katexN = await page.locator('.katex').count();
     if (katexN > 0) ok('Stufe2: KaTeX gerendert (' + katexN + ' Formeln)'); else bad('Stufe2: keine KaTeX-Formeln');
     if (!(await page.textContent('body')).includes('\\(')) ok('Stufe2: kein roher LaTeX-Code'); else bad('Stufe2: roher \\( sichtbar');
     await page.screenshot({ path: path.join(SHOTS, '02-stufe2.png'), fullPage: true });
 
     // --- Stufe 1 (Verfahren) ---
-    await geh(page, '#/thema/geo-spiegelung/1');
+    await geh(page, '#/thema/ana-extrema-wende/1');
     if (/Schritt|Reihenfolge|Verfahren|oben|unten|Pr.fen/i.test(await page.textContent('body'))) ok('Stufe1: Verfahrens-View da'); else bad('Stufe1: View unklar');
     await page.screenshot({ path: path.join(SHOTS, '03-stufe1.png'), fullPage: true });
 
