@@ -104,3 +104,25 @@ Items im Protokoll: 97
 | sim-geo-2/Teilaufgabe 3 (echt parallele Gerade h, AFB II/III) | korrekt | n2.v mit v={1,1,1}; (Q=A+n2)=={8,5,2}; n2.Q=3*8-5-2*2 | n2.v=0 (Bedingung 1: Richtung parallel zu E erfuellt); Q=A+n2=(8,5,2); 3*8-5-2*2=15 != 1 (Bedingung 2: nicht in E erfuellt). | sympy und Wolfram bestaetigen beide Bedingungen. h: x=(8,5,2)+r(1,1,1) ist echt parallel zu E. Beide notwendigen Bedingungen (n.v=0 und Stuetzpunkt nicht in E) korrekt formuliert und nachgewiesen. Lagebeziehung Gerade-Ebene (parallel) im EAN-Scope. Konsistent mit E aus Teil 2. |
 | sim-geo-2/Teilaufgabe 4 (Abstand h zu E via HNF, AFB III) | korrekt | Abs[{3,-1,-2}.{8,5,2}-1]/Norm[{3,-1,-2}]; Simplify; N | \|n\|=Sqrt[14]; Zaehler=\|15-1\|=14; d=14/Sqrt[14]=Sqrt[14]; N[d]=3.74166. | sympy und Wolfram bestaetigen: d=sqrt(14)~3.74. HNF korrekt, Begruendung (alle Punkte von h gleich weit von E wegen echter Parallelitaet -> nur Stuetzpunkt noetig) didaktisch und sachlich richtig. Arithmetik \|3*8-5-2*2-1\|=\|15-1\|=14 stimmt. HNF und Abstand Gerade-Ebene bei Parallelitaet ausdruecklich EAN-erlaubt. Konsistent mit h aus Teil 3. |
 | sim-geo-2/Gesamt (Scope, Originalitaet, AFB-Progression) | korrekt | - | - | EAN-Scope vollstaendig eingehalten: nur Vektorgeometrie R^3 (Punktprobe, Kreuzprodukt, Koordinatenebene, Lagebeziehung Gerade-Ebene, HNF, Abstand bei Parallelitaet) - alle erlaubt/erwuenscht. Keine verbotenen Inhalte (kein e^x/ln, keine Ketten-/Quotientenregel, keine windschiefen Geraden, keine Stochastik). Eigene Zahlen (g, A, E: 3x-y-2z=1, h), keine bekannte Originalaufgabe. AFB-Progression I/II -> II -> II/III -> III plausibel und steigend. Teilaufgaben bauen sauber aufeinander auf (A/g -> E -> h -> Abstand). Keine Reparatur noetig. |
+
+## Nachtrag 2026-06-10 — Simulator-Items komplett ersetzt (Strukturklon-Fix)
+
+Praxistest-Befund: Die obigen sim-*-Eintraege bezogen sich auf Items, die die
+AUFGABENFOLGE der Originalpruefung 2021 1:1 nachbauten (nur andere Zahlen) und
+von einem Pruefer sofort wiedererkannt wurden. Die Eintraege oben sind damit
+HISTORISCH (Inhalte nicht mehr in app/content.js).
+
+Alle 4 Simulator-Items (sim-ana-1/2, sim-geo-1/2) wurden durch strukturell neu
+komponierte Aufgabenfolgen ersetzt:
+
+| Item | Neue Aufgabenfolge | Verifikation |
+|---|---|---|
+| sim-ana-1 | f(x)=x^3-6x^2+9x: Faktorisieren/Vielfachheit -> Monotonie ueber f'-Vorzeichen -> mittlere vs. momentane Aenderungsrate -> Flaeche [0;3]=27/4 | sympy: tools/verify_sim_math.py (32 Checks GRUEN) |
+| sim-ana-2 | Anwendung Zuflussrate z(t)=-1/4 t^3+3t^2 auf [0;12]: Modellgrenzen -> Maximum z(8)=64 -> Gesamtmenge 432 l -> staerkste Zunahme t=4 | sympy: tools/verify_sim_math.py |
+| sim-geo-1 | Pyramide O,A(4|0|0),B(0|4|0),C(0|0|4): gleichseitig sqrt(32) -> E: x+y+z=4 -> V=32/3 elementargeometrisch -> Lotfusspunkt F(4/3,4/3,4/3), d=4*sqrt(3)/3, Konsistenz V=1/3*G*d | sympy: tools/verify_sim_math.py |
+| sim-geo-2 | Geraden: g durch A(2|1|5),B(4|5|3) + Spurpunkt S(7|11|0) -> g=h identisch -> k echt parallel -> Abstand sqrt(5) via Lotfusspunkt F(4|0|5) | sympy: tools/verify_sim_math.py |
+
+Zusaetzlicher Waechter: tests/test_content.py::test_simulator_keine_strukturklone
+(Aufgabentyp-Fingerprints je Original-Sektion 2017/2021; >= 2 Treffer derselben
+Sektion in einem Item = Fail). KaTeX-Renderpruefung: alle 274 Formeln der neuen
+Items parsen fehlerfrei (katex.renderToString, throwOnError).

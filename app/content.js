@@ -2136,51 +2136,48 @@ const CONTENT = {
       "gebiet": "analysis",
       "teilaufgaben": [
         {
-          "frage": "Gegeben ist die ganzrationale Funktion \\( f \\) mit \\( f(x) = x^3 - 3x^2 \\) (Definitionsbereich \\( \\mathbb{R} \\)). Begruenden Sie OHNE Rechnung: (i) ob der Graph achsen- oder punktsymmetrisch ist, (ii) das Grenzverhalten von \\( f \\) fuer \\( x \\to +\\infty \\) und \\( x \\to -\\infty \\), und (iii) wie viele Nullstellen \\( f \\) hoechstens haben kann und warum mindestens eine existiert.",
+          "frage": "Gegeben ist die ganzrationale Funktion \\( f \\) mit \\( f(x) = x^3 - 6x^2 + 9x \\) (Definitionsbereich \\( \\mathbb{R} \\)). Bestimmen Sie alle Nullstellen von \\( f \\) durch Ausklammern und Faktorisieren. Erläutern Sie anschließend, was die Vielfachheit der Nullstellen jeweils für den Verlauf des Graphen an diesen Stellen bedeutet.",
           "erwartungsbild": [
-            "(i) Symmetrie: Der Funktionsterm enthaelt sowohl eine ungerade Potenz (\\( x^3 \\)) als auch eine gerade Potenz (\\( -3x^2 \\)). Daher ist der Graph WEDER achsensymmetrisch zur y-Achse (das verlangte nur gerade Exponenten) NOCH punktsymmetrisch zum Ursprung (das verlangte nur ungerade Exponenten). Keine dieser einfachen Symmetrien liegt vor.",
-            "(ii) Grenzverhalten: Es entscheidet die hoechste Potenz \\( x^3 \\) mit positivem Koeffizienten. Da der Grad ungerade ist, laufen die Aeste in entgegengesetzte Richtungen: \\( x \\to +\\infty \\Rightarrow f(x) \\to +\\infty \\) und \\( x \\to -\\infty \\Rightarrow f(x) \\to -\\infty \\).",
-            "(iii) Nullstellenzahl: Eine ganzrationale Funktion vom Grad 3 hat hoechstens 3 reelle Nullstellen (Grad = Hoechstzahl der Nullstellen). Mindestens eine reelle Nullstelle existiert, weil \\( f \\) stetig ist und wegen des entgegengesetzten Grenzverhaltens (von \\( -\\infty \\) nach \\( +\\infty \\)) den Wert 0 nach dem Zwischenwertsatz annehmen muss.",
-            "Bewertung der Tiefe: Eine reine Nennung ohne Begruendung (z.B. nur 'nicht symmetrisch') ist AFB I; die korrekte Begruendung ueber gerade/ungerade Exponenten, fuehrenden Term und Zwischenwertsatz ist AFB II."
+            "Ausklammern von \\( x \\): \\( f(x) = x\\,(x^2 - 6x + 9) \\). Der quadratische Faktor ist eine binomische Formel: \\( x^2 - 6x + 9 = (x-3)^2 \\). Insgesamt \\( f(x) = x\\,(x-3)^2 \\).",
+            "Satz vom Nullprodukt: \\( f(x)=0 \\Leftrightarrow x = 0 \\) oder \\( x = 3 \\). Die Funktion hat genau die Nullstellen \\( x_1 = 0 \\) (einfach) und \\( x_2 = 3 \\) (doppelt).",
+            "Deutung der Vielfachheit: Bei der einfachen Nullstelle \\( x_1 = 0 \\) schneidet der Graph die \\( x \\)-Achse mit Vorzeichenwechsel von \\( f \\). Bei der doppelten Nullstelle \\( x_2 = 3 \\) berührt der Graph die \\( x \\)-Achse nur: kein Vorzeichenwechsel, die \\( x \\)-Achse ist dort Tangente (zugleich Extremstelle).",
+            "Bewertung: Das Faktorisieren mit binomischer Formel ist AFB I; die korrekte Deutung der Vielfachheiten (Schneiden vs. Berühren) ist AFB II."
           ],
           "afb": "I/II"
         },
         {
-          "frage": "Bestimmen Sie rechnerisch die Lage und Art aller Extrempunkte von \\( f(x) = x^3 - 3x^2 \\) (Nachweis der Art ueber das \\( f'' \\)-Kriterium) sowie den Wendepunkt (notwendige Bedingung \\( f''(x)=0 \\) UND hinreichende Bedingung \\( f'''(x)\\neq 0 \\)).",
+          "frage": "Untersuchen Sie das Monotonieverhalten von \\( f \\) mit \\( f(x) = x^3 - 6x^2 + 9x \\) vollständig: Bestimmen Sie die Monotonieintervalle mit Hilfe einer Vorzeichenuntersuchung der ersten Ableitung und folgern Sie daraus Lage und Art aller Extrempunkte (ohne das \\( f'' \\)-Kriterium).",
           "erwartungsbild": [
-            "Ableitungen bilden: \\( f'(x) = 3x^2 - 6x \\), \\( f''(x) = 6x - 6 \\), \\( f'''(x) = 6 \\).",
-            "Notwendige Bedingung fuer Extrema: \\( f'(x)=0 \\Rightarrow 3x(x-2)=0 \\Rightarrow x_1 = 0,\\ x_2 = 2 \\).",
-            "Art ueber \\( f'' \\): \\( f''(0) = -6 < 0 \\Rightarrow \\) Hochpunkt; \\( f''(2) = 6 > 0 \\Rightarrow \\) Tiefpunkt.",
-            "Funktionswerte: \\( f(0)=0 \\) und \\( f(2)= 8 - 12 = -4 \\). Ergebnis: Hochpunkt \\( H(0\\,|\\,0) \\), Tiefpunkt \\( T(2\\,|\\,-4) \\).",
-            "Wendepunkt: notwendig \\( f''(x)=0 \\Rightarrow 6x-6=0 \\Rightarrow x=1 \\); hinreichend \\( f'''(1)=6 \\neq 0 \\Rightarrow \\) Wendestelle bestaetigt. Mit \\( f(1)=1-3=-2 \\) folgt Wendepunkt \\( W(1\\,|\\,-2) \\).",
-            "Maschinelle Checks: Tiefpunkt-y-Wert direkt ueber Einsetzen (x**3-3*x**2).subs(x,2) = -4; Wendestelle x=1 aus solve(6*x-6) = 1. Alle Werte mit sympy und Wolfram bestaetigt (HP(0|0), TP(2|-4), WP(1|-2))."
+            "Ableitung bilden und faktorisieren: \\( f'(x) = 3x^2 - 12x + 9 = 3\\,(x-1)(x-3) \\); Nullstellen von \\( f' \\) sind \\( x = 1 \\) und \\( x = 3 \\).",
+            "Vorzeichen von \\( f' \\) (z. B. per Testeinsetzung oder am Parabelverlauf): \\( f'(x) > 0 \\) für \\( x < 1 \\), \\( f'(x) < 0 \\) für \\( 1 < x < 3 \\), \\( f'(x) > 0 \\) für \\( x > 3 \\).",
+            "Monotonieintervalle: \\( f \\) ist streng monoton steigend auf \\( (-\\infty\\,;\\,1] \\), streng monoton fallend auf \\( [1\\,;\\,3] \\) und streng monoton steigend auf \\( [3\\,;\\,+\\infty) \\).",
+            "Folgerung über den Vorzeichenwechsel von \\( f' \\) (Monotoniekriterium): Bei \\( x = 1 \\) Wechsel von steigend zu fallend, also Hochpunkt; bei \\( x = 3 \\) Wechsel von fallend zu steigend, also Tiefpunkt.",
+            "Funktionswerte: \\( f(1) = 1 - 6 + 9 = 4 \\) und \\( f(3) = 27 - 54 + 27 = 0 \\). Ergebnis: Hochpunkt \\( H(1\\,|\\,4) \\), Tiefpunkt \\( T(3\\,|\\,0) \\) — konsistent zur Berührstelle aus der vorigen Teilaufgabe.",
+            "Bewertung: Die saubere Argumentation über den Vorzeichenwechsel von \\( f' \\) (statt \\( f'' \\)-Kriterium) zeigt Verständnis des Monotoniekriteriums und ist AFB II."
           ],
           "afb": "II"
         },
         {
-          "frage": "Im Punkt \\( B(3\\,|\\,0) \\) (einer Nullstelle von \\( f \\)) wird die Tangente \\( t \\) an den Graphen von \\( f \\) gelegt. Beschreiben Sie zunaechst allgemein die Vorgehensweise zur Berechnung des Flaecheninhalts der von der Tangente \\( t \\) und dem Graphen von \\( f \\) eingeschlossenen Flaeche, geben Sie dann den vollstaendigen Ansatz konkret an und berechnen Sie den Flaecheninhalt.",
+          "frage": "Erläutern Sie den Unterschied zwischen der mittleren und der momentanen Änderungsrate einer Funktion und deuten Sie beide am Graphen. Berechnen Sie für \\( f(x) = x^3 - 6x^2 + 9x \\) die mittlere Änderungsrate auf dem Intervall \\( [0\\,;\\,2] \\) sowie die momentane Änderungsrate an der Stelle \\( x = 1 \\) und vergleichen Sie die Ergebnisse.",
           "erwartungsbild": [
-            "Vorgehensweise (Verfahren, in richtiger Reihenfolge): 1. Tangentensteigung \\( m = f'(3) \\) berechnen und Tangentengleichung \\( t(x)=f(3)+f'(3)\\,(x-3) \\) aufstellen. 2. Schnittstellen von Graph und Tangente ueber \\( f(x)=t(x) \\) bestimmen (Differenzfunktion \\( d(x)=f(x)-t(x) \\) gleich 0 setzen). 3. Die so erhaltenen Grenzen liefern das Integrationsintervall; Flaeche \\( = \\big| \\int_{a}^{b}\\big(f(x)-t(x)\\big)\\,dx \\big| \\) (Betrag, da die Differenzfunktion das Vorzeichen nicht wechselt).",
-            "Konkret Schritt 1: \\( f'(x)=3x^2-6x \\Rightarrow m=f'(3)=27-18=9 \\); mit \\( f(3)=0 \\) folgt \\( t(x)=9(x-3)=9x-27 \\).",
-            "Konkret Schritt 2: \\( d(x)=f(x)-t(x)=x^3-3x^2-9x+27=(x-3)^2(x+3) \\). Doppelte Nullstelle bei \\( x=3 \\) (Beruehrpunkt) und einfache bei \\( x=-3 \\). Integrationsgrenzen: \\( a=-3 \\) bis \\( b=3 \\).",
-            "Konkret Schritt 3 (Ansatz und Wert): \\[ A = \\left| \\int_{-3}^{3}\\big((x^3-3x^2)-(9x-27)\\big)\\,dx \\right| = \\left| \\int_{-3}^{3}(x-3)^2(x+3)\\,dx \\right| = 108. \\]",
-            "Maschineller Check (numerisch, level 3): loesung = 108; check { art: ausdruck, expr: 'Abs(integrate((x**3-3*x**2)-(9*x-27),(x,-3,3)))' }. Mit sympy UND Wolfram bestaetigt (Flaeche exakt 108, Faktorisierung (x-3)^2(x+3); auf dem offenen Intervall (-3,3) gilt d(x)>0, also kein Vorzeichenwechsel, der Betrag ist gerechtfertigt).",
-            "Bewertung: Korrekte Beschreibung der Vorgehensweise ist AFB II; das eigenstaendige Aufstellen der Tangente, Erkennen des Betrags wegen fehlendem Vorzeichenwechsel und die fehlerfreie Integration sind AFB III."
+            "Begriffe: Die mittlere Änderungsrate auf \\( [a\\,;\\,b] \\) ist der Differenzenquotient \\( \\dfrac{f(b)-f(a)}{b-a} \\) und entspricht der Steigung der Sekante durch die Punkte \\( (a\\,|\\,f(a)) \\) und \\( (b\\,|\\,f(b)) \\). Die momentane Änderungsrate an einer Stelle \\( x_0 \\) ist der Grenzwert des Differenzenquotienten, also \\( f'(x_0) \\), und entspricht der Steigung der Tangente in \\( x_0 \\).",
+            "Mittlere Änderungsrate auf \\( [0\\,;\\,2] \\): \\( f(0) = 0 \\) und \\( f(2) = 8 - 24 + 18 = 2 \\), also \\( \\dfrac{f(2)-f(0)}{2-0} = \\dfrac{2}{2} = 1 \\).",
+            "Momentane Änderungsrate bei \\( x = 1 \\): \\( f'(x) = 3x^2 - 12x + 9 \\Rightarrow f'(1) = 3 - 12 + 9 = 0 \\) (waagerechte Tangente im Hochpunkt).",
+            "Vergleich und Deutung: Die Sekante über \\( [0\\,;\\,2] \\) steigt (Steigung \\( 1 \\)), obwohl die Tangente in der Intervallmitte waagerecht verläuft — die mittlere Änderungsrate mittelt das Steigen vor und das Fallen nach dem Hochpunkt. Das zeigt: Aus der mittleren Änderungsrate kann nicht auf das lokale Verhalten an einer einzelnen Stelle geschlossen werden.",
+            "Bewertung: Begriffe und graphische Deutung (Sekante/Tangente) sind AFB I/II; der reflektierte Vergleich beider Werte ist AFB II."
           ],
-          "afb": "II/III"
+          "afb": "II"
         },
         {
-          "frage": "Betrachten Sie nun die Funktionenschar \\( f_k \\) mit \\( f_k(x) = x^3 - 3x^2 + k,\\ k \\in \\mathbb{R} \\). Untersuchen Sie, wie viele Nullstellen der Graph von \\( f_k \\) in Abhaengigkeit von \\( k \\) besitzt, und bestimmen Sie alle Werte von \\( k \\), fuer die der Graph GENAU zwei Nullstellen hat.",
+          "frage": "Der Graph von \\( f \\) mit \\( f(x) = x^3 - 6x^2 + 9x \\) und die \\( x \\)-Achse schließen im Intervall \\( [0\\,;\\,3] \\) eine Fläche vollständig ein. Begründen Sie zunächst, dass \\( f \\) auf diesem Intervall keine negativen Werte annimmt, und berechnen Sie dann den Flächeninhalt.",
           "erwartungsbild": [
-            "Idee: Die Addition von \\( k \\) verschiebt den Graphen nur vertikal; die Extremstellen bleiben unveraendert. \\( f_k'(x)=3x^2-6x=0 \\Rightarrow x=0 \\) (Hochpunkt) und \\( x=2 \\) (Tiefpunkt). Die Anzahl der Nullstellen haengt von der Lage der Extrempunkte relativ zur x-Achse ab.",
-            "Extremwerte in Abhaengigkeit von k: Hochpunkt \\( H(0\\,|\\,k) \\) mit \\( y_H = f_k(0)=k \\); Tiefpunkt \\( T(2\\,|\\,k-4) \\) mit \\( y_T = f_k(2)=k-4 \\).",
-            "Drei Nullstellen \\( \\Leftrightarrow \\) Hochpunkt oberhalb und Tiefpunkt unterhalb der x-Achse: \\( y_H>0 \\) und \\( y_T<0 \\Rightarrow k>0 \\) und \\( k-4<0 \\Rightarrow 0<k<4 \\).",
-            "Genau zwei Nullstellen \\( \\Leftrightarrow \\) ein Extrempunkt liegt GENAU auf der x-Achse (Beruehrung, doppelte Nullstelle): \\( y_H=0 \\) oder \\( y_T=0 \\Rightarrow k=0 \\) oder \\( k=4 \\). Ergebnis: \\( k=0 \\) (Beruehrung im Hochpunkt, Nullstellen \\( x=0 \\) doppelt und \\( x=3 \\)) oder \\( k=4 \\) (Beruehrung im Tiefpunkt, Nullstellen \\( x=-1 \\) und \\( x=2 \\) doppelt).",
-            "Eine Nullstelle \\( \\Leftrightarrow \\) beide Extrempunkte auf derselben Seite der x-Achse: \\( y_T>0 \\Rightarrow k>4 \\) oder \\( y_H<0 \\Rightarrow k<0 \\).",
-            "Maschinelle Checks: Mengen-Check fuer k=0 { art: menge, gleichung: 'x**3-3*x**2', var: 'x', erwartet: ['0','3'] }; fuer k=4 { art: menge, gleichung: 'x**3-3*x**2+4', var: 'x', erwartet: ['-1','2'] }. Als numerisch (level 4): 'groesster k-Wert mit genau 2 Nullstellen' loesung = 4, check { art: ausdruck, expr: 'Max(0,4)' }. Anzahl-Nullstellen (verschiedene reelle) fuer k in {-1,0,2,4,5} = {1,2,3,2,1} mit sympy UND Wolfram bestaetigt.",
-            "Bewertung: Das Verknuepfen der Nullstellenzahl mit der Lage der von k abhaengigen Extrempunkte und die vollstaendige Fallunterscheidung sind AFB III."
+            "Vorzeichenbegründung über die Faktorisierung \\( f(x) = x\\,(x-3)^2 \\): Für \\( 0 \\le x \\le 3 \\) ist \\( x \\ge 0 \\) und \\( (x-3)^2 \\ge 0 \\) (Quadrat), also \\( f(x) \\ge 0 \\). Der Graph verläuft auf \\( [0\\,;\\,3] \\) oberhalb der \\( x \\)-Achse (Gleichheit nur an den Rändern \\( x=0 \\) und \\( x=3 \\)).",
+            "Deshalb liefert das bestimmte Integral direkt den Flächeninhalt (kein Aufteilen in Teilflächen, kein Betrag nötig): \\( A = \\int_{0}^{3} \\left(x^3 - 6x^2 + 9x\\right) dx \\).",
+            "Stammfunktion: \\( F(x) = \\tfrac{1}{4}x^4 - 2x^3 + \\tfrac{9}{2}x^2 \\).",
+            "Auswertung: \\( A = F(3) - F(0) = \\tfrac{81}{4} - 54 + \\tfrac{81}{2} - 0 = \\tfrac{27}{4} = 6{,}75 \\) Flächeneinheiten.",
+            "Bewertung: Das Erkennen, dass die Vorzeichenprüfung VOR der Integration nötig ist, und die Begründung über die Faktorisierung sind AFB III; die Integration selbst ist AFB II."
           ],
-          "afb": "III"
+          "afb": "II/III"
         }
       ]
     },
@@ -2189,46 +2186,50 @@ const CONTENT = {
       "gebiet": "analysis",
       "teilaufgaben": [
         {
-          "frage": "Gegeben ist die ganzrationale Funktion \\( f \\) mit \\( f(x) = \\tfrac{1}{2}x^4 - 4x^2 + 2 \\). Begruenden Sie ohne Rechnung drei Eigenschaften des Graphen: das Symmetrieverhalten zur \\( y \\)-Achse, den \\( y \\)-Achsenabschnitt sowie die maximal moegliche Anzahl an Nullstellen und an Extrempunkten. Erlaeutern Sie jeweils kurz, woran man die Eigenschaft erkennt.",
+          "frage": "Nach einem Starkregen fließt Wasser in ein Rückhaltebecken. Die momentane Zuflussrate wird modelliert durch \\( z(t) = -\\tfrac{1}{4}t^3 + 3t^2 \\) (in Litern pro Minute, \\( t \\) in Minuten seit Beginn). Bestimmen Sie die Nullstellen von \\( z \\), deuten Sie sie im Sachzusammenhang und begründen Sie damit, dass das Modell nur für \\( 0 \\le t \\le 12 \\) sinnvoll ist.",
           "erwartungsbild": [
-            "Symmetrie: Es treten nur gerade Exponenten von \\( x \\) auf (Grad 4, Grad 2 und das konstante Glied, das wie \\( x^0 \\) zaehlt); daher gilt \\( f(-x)=f(x) \\) und der Graph ist achsensymmetrisch zur \\( y \\)-Achse.",
-            "\\( y \\)-Achsenabschnitt: Er ist der Funktionswert an der Stelle \\( x=0 \\); das absolute Glied liefert direkt \\( f(0)=2 \\), also den Punkt \\( (0 \\mid 2) \\) — ohne Einsetzen ablesbar.",
-            "Maximale Anzahl Nullstellen: Ein Polynom 4. Grades hat hoechstens 4 reelle Nullstellen, da der Grad die Hoechstzahl der Nullstellen angibt.",
-            "Maximale Anzahl Extrempunkte: Die Ableitung \\( f' \\) hat Grad 3 und damit hoechstens 3 Nullstellen; folglich besitzt \\( f \\) hoechstens 3 Extrempunkte. Wegen der Achsensymmetrie liegt einer davon auf der \\( y \\)-Achse (bei \\( x=0 \\), da \\( f' \\) als Ableitung einer geraden Funktion ungerade ist und somit \\( f'(0)=0 \\) gilt)."
+            "Faktorisieren: \\( z(t) = -\\tfrac{1}{4}t^2\\,(t - 12) \\). Nullstellen: \\( t = 0 \\) (doppelt) und \\( t = 12 \\).",
+            "Deutung: Zu Beginn (\\( t=0 \\)) und nach \\( 12 \\) Minuten ist die Zuflussrate null — der Zufluss beginnt bei null, nimmt zu und versiegt nach \\( 12 \\) Minuten wieder.",
+            "Vorzeichen dazwischen: Für \\( 0 < t < 12 \\) ist \\( t^2 > 0 \\) und \\( t - 12 < 0 \\), also \\( z(t) = -\\tfrac{1}{4}t^2(t-12) > 0 \\) — es fließt Wasser zu.",
+            "Modellgrenze: Für \\( t > 12 \\) wäre \\( z(t) < 0 \\), das hieße im Modell Abfluss statt Zufluss; das beschreibt den Sachverhalt 'Zufluss nach Starkregen' nicht mehr. Daher ist der Definitionsbereich sinnvoll auf \\( [0\\,;\\,12] \\) beschränkt.",
+            "Bewertung: Rechnung AFB I; die Modellkritik (Übersetzung Vorzeichen der Rate in den Sachzusammenhang) ist AFB II."
           ],
           "afb": "I/II"
         },
         {
-          "frage": "Bestimmen Sie alle Nullstellen von \\( f \\) mit \\( f(x)=\\tfrac{1}{2}x^4 - 4x^2 + 2 \\) mit Hilfe der Substitution \\( x^2 = z \\). Beschreiben Sie die einzelnen Schritte und geben Sie die Nullstellen exakt sowie gerundet an.",
+          "frage": "Bestimmen Sie rechnerisch, zu welchem Zeitpunkt die Zuflussrate \\( z(t) = -\\tfrac{1}{4}t^3 + 3t^2 \\) am größten ist, und geben Sie die maximale Zuflussrate an. Weisen Sie nach, dass es sich tatsächlich um ein Maximum handelt.",
           "erwartungsbild": [
-            "Ansatz \\( f(x)=0 \\): \\( \\tfrac{1}{2}x^4 - 4x^2 + 2 = 0 \\); mit der Substitution \\( z=x^2 \\) entsteht die quadratische Gleichung \\( \\tfrac{1}{2}z^2 - 4z + 2 = 0 \\), nach Multiplikation mit \\( 2 \\) also \\( z^2 - 8z + 4 = 0 \\).",
-            "Loesen mit der p-q-Formel: \\( z = 4 \\pm \\sqrt{16-4} = 4 \\pm 2\\sqrt{3} \\); beide Werte \\( z_1=4-2\\sqrt{3}\\approx 0{,}54 \\) und \\( z_2=4+2\\sqrt{3}\\approx 7{,}46 \\) sind positiv, liefern also reelle \\( x \\).",
-            "Ruecksubstitution \\( x=\\pm\\sqrt{z} \\): aus \\( z_1 \\) folgt \\( x=\\pm\\sqrt{4-2\\sqrt{3}}=\\pm(\\sqrt{3}-1) \\), aus \\( z_2 \\) folgt \\( x=\\pm\\sqrt{4+2\\sqrt{3}}=\\pm(\\sqrt{3}+1) \\).",
-            "Es gibt vier reelle Nullstellen: \\( x_1\\approx -2{,}73,\\ x_2\\approx -0{,}73,\\ x_3\\approx 0{,}73,\\ x_4\\approx 2{,}73 \\); sie liegen wegen der Achsensymmetrie paarweise spiegelbildlich zur \\( y \\)-Achse. Ein negatives \\( z \\) haette man verworfen, da \\( x^2\\ge 0 \\)."
+            "Ableitung: \\( z'(t) = -\\tfrac{3}{4}t^2 + 6t = -\\tfrac{3}{4}t\\,(t-8) \\).",
+            "Notwendige Bedingung \\( z'(t) = 0 \\): \\( t = 0 \\) oder \\( t = 8 \\).",
+            "Nachweis Maximum bei \\( t = 8 \\): \\( z''(t) = -\\tfrac{3}{2}t + 6 \\Rightarrow z''(8) = -6 < 0 \\), also lokales Maximum. (Alternativ Vorzeichenwechsel von \\( z' \\) von \\( + \\) nach \\( - \\).) Bei \\( t=0 \\) liegt wegen \\( z''(0) = 6 > 0 \\) ein Minimum vor (Startpunkt des Zuflusses).",
+            "Randvergleich für das globale Maximum auf \\( [0\\,;\\,12] \\): \\( z(0) = 0 \\) und \\( z(12) = 0 \\), also ist \\( t = 8 \\) auch global maximal.",
+            "Maximale Rate: \\( z(8) = -\\tfrac{1}{4}\\cdot 512 + 3\\cdot 64 = -128 + 192 = 64 \\). Nach \\( 8 \\) Minuten ist die Zuflussrate mit \\( 64 \\) Litern pro Minute am größten.",
+            "Bewertung: Standard-Extremwertbestimmung mit Nachweis und Randbetrachtung im Sachkontext ist AFB II."
           ],
           "afb": "II"
         },
         {
-          "frage": "Die Kurve \\( h \\) mit \\( h(x) = -\\tfrac{1}{2}x^2 + 2 \\) schliesst mit der \\( x \\)-Achse eine Flaeche ein, die um die \\( x \\)-Achse rotiert. Beschreiben Sie die Vorgehensweise zur Berechnung des Rotationsvolumens, geben Sie den vollstaendigen Ansatz mit Integrationsgrenzen an und berechnen Sie das Volumen.",
+          "frage": "Erläutern Sie, warum sich die insgesamt zugeflossene Wassermenge als Integral über die Zuflussrate \\( z(t) = -\\tfrac{1}{4}t^3 + 3t^2 \\) ergibt, und berechnen Sie die Gesamtmenge, die in den ersten \\( 12 \\) Minuten in das Becken fließt.",
           "erwartungsbild": [
-            "Integrationsgrenzen sind die Nullstellen von \\( h \\): \\( -\\tfrac{1}{2}x^2+2=0 \\Rightarrow x^2=4 \\Rightarrow x=-2 \\) und \\( x=2 \\); dort schneidet die Kurve die \\( x \\)-Achse und begrenzt die rotierende Flaeche.",
-            "Ansatz fuer das Rotationsvolumen um die \\( x \\)-Achse: \\[ V = \\pi\\int_{-2}^{2} \\big(h(x)\\big)^2\\,dx = \\pi\\int_{-2}^{2}\\left(-\\tfrac{1}{2}x^2+2\\right)^2 dx. \\]",
-            "Integranden ausquadrieren: \\( \\left(-\\tfrac{1}{2}x^2+2\\right)^2 = \\tfrac{1}{4}x^4 - 2x^2 + 4 \\); eine Stammfunktion ist \\( \\tfrac{1}{20}x^5 - \\tfrac{2}{3}x^3 + 4x \\).",
-            "Grenzen einsetzen (Auswertung zwischen \\( -2 \\) und \\( 2 \\)) ergibt \\( V = \\tfrac{128}{15}\\,\\pi \\approx 26{,}81 \\) (Volumeneinheiten).",
-            "Typische Fehlerquellen benennen: Es wird \\( h(x) \\) quadriert (nicht nur der Funktionswert eingesetzt) und der Faktor \\( \\pi \\) darf nicht vergessen werden; das Ergebnis ist ein Volumen, kein Flaecheninhalt."
+            "Begründung (Rekonstruktion des Bestands aus der Änderungsrate): Die Zuflussrate \\( z \\) ist die momentane Änderungsrate der Wassermenge \\( W \\), d. h. \\( W'(t) = z(t) \\). Nach dem Hauptsatz der Differential- und Integralrechnung gilt \\( W(12) - W(0) = \\int_{0}^{12} z(t)\\, dt \\) — das Integral über die Rate liefert die Gesamtänderung des Bestands.",
+            "Da \\( z(t) \\ge 0 \\) auf \\( [0\\,;\\,12] \\) (siehe erste Teilaufgabe), ist diese Gesamtänderung genau die zugeflossene Menge.",
+            "Stammfunktion: \\( Z(t) = -\\tfrac{1}{16}t^4 + t^3 \\).",
+            "Auswertung: \\( \\int_{0}^{12} z(t)\\,dt = Z(12) - Z(0) = -\\tfrac{20736}{16} + 1728 = -1296 + 1728 = 432 \\).",
+            "Antwortsatz: In den ersten \\( 12 \\) Minuten fließen insgesamt \\( 432 \\) Liter Wasser in das Becken.",
+            "Bewertung: Die Begründung über den Hauptsatz (Rate \\( \\to \\) Bestand) ist der Kern der Aufgabe (AFB II/III); die Integration selbst ist AFB II."
           ],
           "afb": "II/III"
         },
         {
-          "frage": "Gesucht ist eine ganzrationale Funktion \\( q \\) dritten Grades, \\( q(x)=ax^3+bx^2+cx+d \\), mit folgenden Eigenschaften: Der Graph schneidet die \\( y \\)-Achse bei \\( 4 \\), besitzt bei \\( x=2 \\) einen Tiefpunkt, der auf der \\( x \\)-Achse liegt (also \\( q(2)=0 \\)), und hat bei \\( x=1 \\) einen Wendepunkt. Stellen Sie das lineare Gleichungssystem zur Bestimmung der Koeffizienten auf und beschreiben Sie den Loesungsweg.",
+          "frage": "Bestimmen Sie den Zeitpunkt im Intervall \\( [0\\,;\\,12] \\), zu dem die Zuflussrate \\( z(t) = -\\tfrac{1}{4}t^3 + 3t^2 \\) am stärksten zunimmt. Begründen Sie Ihr Vorgehen und prüfen Sie auch das Verhalten an den Intervallrändern.",
           "erwartungsbild": [
-            "Allgemeiner Ansatz mit Ableitungen: \\( q(x)=ax^3+bx^2+cx+d \\), \\( q'(x)=3ax^2+2bx+c \\), \\( q''(x)=6ax+2b \\).",
-            "Eigenschaften in Bedingungen uebersetzen: \\( y \\)-Achsenabschnitt \\( q(0)=4 \\); der Tiefpunkt bei \\( x=2 \\) liefert die Lage \\( q(2)=0 \\) und die waagerechte Tangente \\( q'(2)=0 \\); der Wendepunkt bei \\( x=1 \\) liefert \\( q''(1)=0 \\).",
-            "Lineares Gleichungssystem nach Einsetzen: \\( d=4 \\); \\( 8a+4b+2c+d=0 \\); \\( 12a+4b+c=0 \\); \\( 6a+2b=0 \\).",
-            "Loesen (z. B. durch Einsetzen): \\( q(0)=4 \\) liefert sofort \\( d=4 \\); aus \\( 6a+2b=0 \\) folgt \\( b=-3a \\); Einsetzen in die restlichen Gleichungen ergibt nacheinander \\( a=1,\\ b=-3,\\ c=0 \\). Ergebnis: \\( q(x)=x^3-3x^2+4 \\).",
-            "Probe zur Bestaetigung: \\( q(0)=4 \\) (richtig), \\( q'(2)=12-12=0 \\) mit \\( q''(2)=12-6=6>0 \\) (also tatsaechlich Tiefpunkt) und \\( q''(1)=6-6=0 \\) (Wendepunkt). Faktorisiert gilt \\( q(x)=(x-2)^2(x+1) \\), die Nullstellen sind \\( x=-1 \\) und \\( x=2 \\) (doppelt)."
+            "Übersetzung: 'Die Rate nimmt am stärksten zu' bedeutet, dass die Ableitung der Rate, also \\( z'(t) = -\\tfrac{3}{4}t^2 + 6t \\), maximal werden soll — gesucht ist also ein Maximum von \\( z' \\), nicht von \\( z \\).",
+            "Notwendige Bedingung: \\( z''(t) = -\\tfrac{3}{2}t + 6 = 0 \\Rightarrow t = 4 \\). Hinreichend: \\( z'''(t) = -\\tfrac{3}{2} \\neq 0 \\), genauer \\( z''' < 0 \\), also Maximum von \\( z' \\).",
+            "Wert: \\( z'(4) = -12 + 24 = 12 \\) — nach \\( 4 \\) Minuten wächst die Zuflussrate mit \\( 12 \\) Litern pro Minute pro Minute am stärksten. (Graphisch ist \\( t = 4 \\) die Wendestelle des Graphen von \\( z \\) mit dem steilsten Anstieg.)",
+            "Randvergleich: \\( z'(0) = 0 \\) und \\( z'(12) = -108 + 72 = -36 < 0 \\) (dort nimmt die Rate sogar ab). Das innere Maximum bei \\( t = 4 \\) ist also auch global auf \\( [0\\,;\\,12] \\).",
+            "Bewertung: Das eigenständige Erkennen, dass die ZWEITE Ableitung von \\( z \\) zu untersuchen ist (Optimierung der Ableitungsfunktion im Sachkontext), ist AFB III."
           ],
-          "afb": "II/III"
+          "afb": "III"
         }
       ]
     },
@@ -2237,48 +2238,48 @@ const CONTENT = {
       "gebiet": "geometrie",
       "teilaufgaben": [
         {
-          "frage": "Gegeben sind die beiden Ebenen \\(E_1:\\; 2x + y - 2z = 6\\) und \\(E_2:\\; 4x + 2y - 4z = 12\\) sowie die Punkte \\(A(2\\mid 2\\mid 0)\\) und \\(B(1\\mid 6\\mid 1)\\). Weisen Sie nach, dass beide Punkte sowohl in \\(E_1\\) als auch in \\(E_2\\) liegen, und schließen Sie daraus auf die Lagebeziehung von \\(E_1\\) und \\(E_2\\).",
+          "frage": "Gegeben sind die Punkte \\( A(4\\,|\\,0\\,|\\,0) \\), \\( B(0\\,|\\,4\\,|\\,0) \\) und \\( C(0\\,|\\,0\\,|\\,4) \\). Zusammen mit dem Koordinatenursprung \\( O \\) bilden sie die dreiseitige Pyramide \\( OABC \\). Weisen Sie nach, dass das Dreieck \\( ABC \\) gleichseitig ist.",
           "erwartungsbild": [
-            "Einsetzen von \\(A(2\\mid 2\\mid 0)\\) in \\(E_1\\): \\(2\\cdot 2 + 2 - 2\\cdot 0 = 4 + 2 - 0 = 6\\) — wahre Aussage, also \\(A \\in E_1\\).",
-            "Einsetzen von \\(B(1\\mid 6\\mid 1)\\) in \\(E_1\\): \\(2\\cdot 1 + 6 - 2\\cdot 1 = 2 + 6 - 2 = 6\\) — wahre Aussage, also \\(B \\in E_1\\).",
-            "Einsetzen von \\(A\\) in \\(E_2\\): \\(4\\cdot 2 + 2\\cdot 2 - 4\\cdot 0 = 8 + 4 - 0 = 12\\) — wahr, also \\(A \\in E_2\\); Einsetzen von \\(B\\) in \\(E_2\\): \\(4\\cdot 1 + 2\\cdot 6 - 4\\cdot 1 = 4 + 12 - 4 = 12\\) — wahr, also \\(B \\in E_2\\).",
-            "Vergleich der Normalenvektoren: \\(\\vec{n_2} = \\begin{pmatrix} 4 \\\\ 2 \\\\ -4 \\end{pmatrix} = 2\\cdot\\begin{pmatrix} 2 \\\\ 1 \\\\ -2 \\end{pmatrix} = 2\\,\\vec{n_1}\\) — die Normalenvektoren sind parallel, also ist \\(E_1 \\parallel E_2\\) oder \\(E_1 = E_2\\).",
-            "Da \\(A\\) und \\(B\\) zwei (verschiedene) gemeinsame Punkte sind und die Normalen parallel sind, sind die Ebenen identisch: \\(E_1 = E_2\\) (auch erkennbar daran, dass \\(E_2\\) durch Multiplikation von \\(E_1\\) mit \\(2\\) entsteht: \\(2\\cdot 6 = 12\\)). Es genügt streng genommen schon ein gemeinsamer Punkt zusammen mit den parallelen Normalen; die beiden Punkte bestätigen das Ergebnis."
+            "Verbindungsvektoren bilden: \\( \\vec{AB} = B - A = \\begin{pmatrix} -4 \\\\ 4 \\\\ 0 \\end{pmatrix} \\), \\( \\vec{BC} = C - B = \\begin{pmatrix} 0 \\\\ -4 \\\\ 4 \\end{pmatrix} \\), \\( \\vec{CA} = A - C = \\begin{pmatrix} 4 \\\\ 0 \\\\ -4 \\end{pmatrix} \\).",
+            "Seitenlängen als Beträge: \\( |\\vec{AB}| = \\sqrt{16+16+0} = \\sqrt{32} \\); ebenso \\( |\\vec{BC}| = \\sqrt{0+16+16} = \\sqrt{32} \\) und \\( |\\vec{CA}| = \\sqrt{16+0+16} = \\sqrt{32} \\).",
+            "Alle drei Seiten sind gleich lang (\\( \\sqrt{32} = 4\\sqrt{2} \\approx 5{,}66 \\)), also ist das Dreieck \\( ABC \\) gleichseitig.",
+            "Bewertung: Verbindungsvektoren und Beträge berechnen ist AFB I; der vollständige, sauber aufgeschriebene Nachweis ist AFB I/II."
           ],
           "afb": "I/II"
         },
         {
-          "frage": "Geben Sie alle möglichen Lagebeziehungen zweier Ebenen im Raum an und erläutern Sie diese kurz. Erläutern Sie anschließend, wie die Gleichung von \\(E_2\\) (bei unverändertem Normalenvektor) abgeändert werden müsste, damit \\(E_2\\) echt parallel zu \\(E_1\\) verläuft und keinen gemeinsamen Punkt mehr mit \\(E_1\\) hat.",
+          "frage": "Bestimmen Sie eine Koordinatengleichung der Ebene \\( E \\), in der das Dreieck \\( ABC \\) liegt. Verwenden Sie zur Bestimmung eines Normalenvektors das Kreuzprodukt und führen Sie die Punktprobe mit allen drei Punkten durch.",
           "erwartungsbild": [
-            "Es gibt genau drei Lagebeziehungen zweier Ebenen: (1) identisch (gleiche Ebene, unendlich viele gemeinsame Punkte), (2) echt parallel (parallele Normalen, aber kein gemeinsamer Punkt), (3) schneidend (Normalen nicht parallel, gemeinsame Punkte bilden eine Schnittgerade).",
-            "Kriterium: Bei parallelen Normalenvektoren liegt (1) oder (2) vor; sind die Normalen nicht parallel, schneiden sich die Ebenen (3).",
-            "Unterscheidung (1)/(2): Bei identischen Normalen prüft man, ob die Ebenengleichungen Vielfache voneinander sind (gleiche rechte Seite nach Normierung) — dann identisch, sonst echt parallel.",
-            "Für echte Parallelität muss der Normalenvektor von \\(E_2\\) ein Vielfaches von \\(\\vec{n_1}=\\begin{pmatrix}2\\\\1\\\\-2\\end{pmatrix}\\) bleiben, die rechte Seite jedoch so geändert werden, dass kein Punkt von \\(E_1\\) die Gleichung erfüllt.",
-            "Beispiel: \\(E_2^{*}:\\; 2x + y - 2z = 10\\). Da \\(\\vec{n}=\\vec{n_1}\\), ist \\(E_2^{*}\\parallel E_1\\); Einsetzen von \\(A(2\\mid2\\mid0)\\) ergibt \\(6 \\neq 10\\), also kein gemeinsamer Punkt — die Ebenen sind echt parallel. (Jede rechte Seite \\(\\neq 6\\) bei diesem Normalenvektor leistet das.)"
+            "Spannvektoren: \\( \\vec{AB} = \\begin{pmatrix} -4 \\\\ 4 \\\\ 0 \\end{pmatrix} \\) und \\( \\vec{AC} = C - A = \\begin{pmatrix} -4 \\\\ 0 \\\\ 4 \\end{pmatrix} \\).",
+            "Normalenvektor über das Kreuzprodukt: \\( \\vec{AB} \\times \\vec{AC} = \\begin{pmatrix} 4\\cdot 4 - 0\\cdot 0 \\\\ 0\\cdot(-4) - (-4)\\cdot 4 \\\\ (-4)\\cdot 0 - 4\\cdot(-4) \\end{pmatrix} = \\begin{pmatrix} 16 \\\\ 16 \\\\ 16 \\end{pmatrix} \\); kürzen durch \\( 16 \\) ergibt \\( \\vec{n} = \\begin{pmatrix} 1 \\\\ 1 \\\\ 1 \\end{pmatrix} \\).",
+            "Ansatz \\( E:\\; x + y + z = d \\); Einsetzen von \\( A(4\\,|\\,0\\,|\\,0) \\) liefert \\( d = 4 \\). Also \\( E:\\; x + y + z = 4 \\).",
+            "Punktprobe: \\( A: 4+0+0=4 \\) (wahr), \\( B: 0+4+0=4 \\) (wahr), \\( C: 0+0+4=4 \\) (wahr) — alle drei Punkte liegen in \\( E \\).",
+            "Bewertung: Kreuzprodukt, Kürzen des Normalenvektors und Bestimmung von \\( d \\) sind AFB II."
           ],
           "afb": "II"
         },
         {
-          "frage": "Da \\(E_1\\) und \\(E_2\\) identisch sind, ist jeder Punkt von \\(E_1\\) gemeinsamer Punkt beider Ebenen. Bestimmen Sie deshalb einen von \\(A\\) und \\(B\\) verschiedenen gemeinsamen Punkt. Erläutern Sie außerdem das allgemeine Vorgehen, mit dem man bei zwei sich schneidenden Ebenen die Schnittgerade bestimmt, und führen Sie es beispielhaft für \\(E_1:\\;2x+y-2z=6\\) und die Ebene \\(E_3:\\;x-y+z=0\\) durch.",
+          "frage": "Berechnen Sie das Volumen der Pyramide \\( OABC \\) auf einem elementargeometrischen Weg, indem Sie eine geeignete Grundfläche und die zugehörige Höhe im Koordinatensystem ablesen. Erläutern Sie Ihre Wahl.",
           "erwartungsbild": [
-            "Weiterer gemeinsamer Punkt: ein beliebiger Punkt, der \\(2x+y-2z=6\\) erfüllt; z. B. \\(x=0,\\ z=0 \\Rightarrow y=6\\), also \\(C(0\\mid 6\\mid 0)\\). Probe in \\(E_2\\): \\(4\\cdot0+2\\cdot6-4\\cdot0=12\\) — erfüllt, somit \\(C\\in E_1=E_2\\).",
-            "Allgemeines Vorgehen bei schneidenden Ebenen: Die beiden Ebenengleichungen bilden ein lineares Gleichungssystem mit zwei Gleichungen und drei Unbekannten; man setzt eine Koordinate als Parameter \\(t\\) und löst die übrigen beiden auf. (Alternative: Richtungsvektor der Schnittgeraden über das Kreuzprodukt \\(\\vec{n_1}\\times\\vec{n_3}\\), ein Geradenpunkt aus dem LGS.)",
-            "Durchführung mit \\(E_3:\\;x-y+z=0\\): Setze \\(z=t\\). Aus dem LGS \\(2x+y-2z=6,\\ x-y+z=0\\) folgt \\(x=\\tfrac{t}{3}+2\\) und \\(y=\\tfrac{4t}{3}+2\\).",
-            "Schnittgerade in Parameterform (mit \\(t=3s\\), um Brüche zu vermeiden): \\(g:\\ \\vec{x}=\\begin{pmatrix} 2 \\\\ 2 \\\\ 0 \\end{pmatrix} + s\\begin{pmatrix} 1 \\\\ 4 \\\\ 3 \\end{pmatrix}\\). Der Richtungsvektor \\(\\begin{pmatrix}1\\\\4\\\\3\\end{pmatrix}\\) ist (bis auf Vorzeichen) das Kreuzprodukt \\(\\vec{n_1}\\times\\vec{n_3}=\\begin{pmatrix}-1\\\\-4\\\\-3\\end{pmatrix}\\).",
-            "Kontrolle: \\(\\vec{n_1}\\cdot\\begin{pmatrix}1\\\\4\\\\3\\end{pmatrix}=2+4-6=0\\) und \\(\\vec{n_3}\\cdot\\begin{pmatrix}1\\\\4\\\\3\\end{pmatrix}=1-4+3=0\\); der Stützpunkt \\(A(2\\mid2\\mid0)\\) liegt in beiden Ebenen — die Gerade liegt also in \\(E_1\\) und \\(E_3\\)."
+            "Geschickte Wahl: Als Grundfläche eignet sich das Dreieck \\( OAB \\), denn es liegt vollständig in der \\( x \\)-\\( y \\)-Ebene (alle \\( z \\)-Koordinaten null) und ist bei \\( O \\) rechtwinklig mit den Katheten \\( OA \\) und \\( OB \\).",
+            "Grundfläche: \\( G = \\tfrac{1}{2}\\cdot |OA| \\cdot |OB| = \\tfrac{1}{2}\\cdot 4 \\cdot 4 = 8 \\).",
+            "Höhe: Die Spitze \\( C(0\\,|\\,0\\,|\\,4) \\) liegt senkrecht über \\( O \\) — die \\( z \\)-Achse steht senkrecht auf der Grundflächenebene, also ist \\( h = 4 \\) direkt ablesbar.",
+            "Volumen: \\( V = \\tfrac{1}{3}\\, G\\, h = \\tfrac{1}{3}\\cdot 8 \\cdot 4 = \\tfrac{32}{3} \\approx 10{,}67 \\) Volumeneinheiten.",
+            "Bewertung: Die begründete WAHL einer rechnerisch günstigen Grundfläche (statt schematischem Rechnen) ist der Kern; Durchführung AFB II."
           ],
-          "afb": "II/III"
+          "afb": "II"
         },
         {
-          "frage": "Berechnen Sie den Schnittwinkel zwischen der Ebene \\(E_1:\\;2x+y-2z=6\\) und der \\(xy\\)-Koordinatenebene. Erläutern Sie zunächst die verwendete Formel.",
+          "frage": "Stellen Sie die Gleichung der Lotgeraden vom Ursprung \\( O \\) auf die Ebene \\( E:\\; x + y + z = 4 \\) auf, berechnen Sie den Lotfußpunkt \\( F \\) und den Abstand des Ursprungs von \\( E \\). Zeigen Sie abschließend, dass dieser Abstand zusammen mit dem Flächeninhalt des Dreiecks \\( ABC \\) erneut das Pyramidenvolumen aus der vorigen Teilaufgabe liefert.",
           "erwartungsbild": [
-            "Der Schnittwinkel \\(\\alpha\\) zweier Ebenen wird über die Normalenvektoren bestimmt: \\(\\cos\\alpha = \\dfrac{|\\vec{n_1}\\cdot\\vec{n_2}|}{|\\vec{n_1}|\\,|\\vec{n_2}|}\\). Der Betrag im Zähler stellt sicher, dass der spitze Schnittwinkel (\\(0^\\circ \\le \\alpha \\le 90^\\circ\\)) herauskommt.",
-            "Normalenvektor von \\(E_1\\): \\(\\vec{n_1}=\\begin{pmatrix} 2 \\\\ 1 \\\\ -2 \\end{pmatrix}\\); Normalenvektor der \\(xy\\)-Ebene (\\(z=0\\)): \\(\\vec{n}=\\begin{pmatrix} 0 \\\\ 0 \\\\ 1 \\end{pmatrix}\\).",
-            "Skalarprodukt: \\(\\vec{n_1}\\cdot\\vec{n}=2\\cdot0+1\\cdot0+(-2)\\cdot1=-2\\); Beträge: \\(|\\vec{n_1}|=\\sqrt{2^2+1^2+(-2)^2}=\\sqrt{9}=3\\), \\(|\\vec{n}|=1\\).",
-            "Einsetzen: \\(\\cos\\alpha=\\dfrac{|-2|}{3\\cdot 1}=\\dfrac{2}{3}\\approx 0{,}6667\\).",
-            "Ergebnis: \\(\\alpha=\\arccos\\!\\big(\\tfrac{2}{3}\\big)\\approx 48{,}19^\\circ\\) (gerundet auf zwei Nachkommastellen). Das ist der gesuchte Schnittwinkel zwischen \\(E_1\\) und der \\(xy\\)-Ebene."
+            "Lotgerade: Sie geht durch \\( O \\) und hat den Normalenvektor von \\( E \\) als Richtungsvektor: \\( \\ell:\\; \\vec{x} = t\\begin{pmatrix} 1 \\\\ 1 \\\\ 1 \\end{pmatrix} \\).",
+            "Lotfußpunkt durch Einsetzen in \\( E \\): \\( t + t + t = 4 \\Rightarrow t = \\tfrac{4}{3} \\), also \\( F\\left(\\tfrac{4}{3}\\,\\middle|\\,\\tfrac{4}{3}\\,\\middle|\\,\\tfrac{4}{3}\\right) \\).",
+            "Abstand: \\( d = |\\vec{OF}| = \\sqrt{3\\cdot\\left(\\tfrac{4}{3}\\right)^2} = \\tfrac{4}{3}\\sqrt{3} = \\tfrac{4\\sqrt{3}}{3} \\approx 2{,}31 \\) Längeneinheiten.",
+            "Flächeninhalt des gleichseitigen Dreiecks über das Kreuzprodukt: \\( A_{ABC} = \\tfrac{1}{2}\\,|\\vec{AB} \\times \\vec{AC}| = \\tfrac{1}{2}\\sqrt{16^2+16^2+16^2} = \\tfrac{1}{2}\\cdot 16\\sqrt{3} = 8\\sqrt{3} \\).",
+            "Konsistenzprüfung: \\( V = \\tfrac{1}{3}\\cdot A_{ABC} \\cdot d = \\tfrac{1}{3}\\cdot 8\\sqrt{3} \\cdot \\tfrac{4\\sqrt{3}}{3} = \\tfrac{1}{3}\\cdot \\tfrac{32\\cdot 3}{3} = \\tfrac{32}{3} \\) — derselbe Wert wie auf dem elementargeometrischen Weg. Der Abstand \\( d \\) ist also genau die Höhe der Pyramide über der Grundfläche \\( ABC \\).",
+            "Bewertung: Lotgerade und Lotfußpunkt sind AFB II; die Verknüpfung beider Volumenwege als Konsistenzargument ist AFB III."
           ],
-          "afb": "II/III"
+          "afb": "III"
         }
       ]
     },
@@ -2287,43 +2288,47 @@ const CONTENT = {
       "gebiet": "geometrie",
       "teilaufgaben": [
         {
-          "frage": "Gegeben sind die Gerade \\( g:\\ \\vec{x} = \\begin{pmatrix} 1 \\\\ 2 \\\\ 0 \\end{pmatrix} + t \\begin{pmatrix} 2 \\\\ 0 \\\\ 3 \\end{pmatrix} \\) und der Punkt \\( A\\begin{pmatrix} 5 \\\\ 6 \\\\ 4 \\end{pmatrix} \\). Untersuchen Sie durch eine Punktprobe, ob \\( A \\) auf \\( g \\) liegt, und geben Sie die besondere Lage von \\( g \\) im Koordinatensystem an. Begruenden Sie diese Lage anhand des Richtungs- und des Stuetzvektors.",
+          "frage": "Gegeben sind die Punkte \\( A(2\\,|\\,1\\,|\\,5) \\) und \\( B(4\\,|\\,5\\,|\\,3) \\). Stellen Sie eine Gleichung der Geraden \\( g \\) durch \\( A \\) und \\( B \\) auf und berechnen Sie die Koordinaten des Punktes, in dem \\( g \\) die \\( x \\)-\\( y \\)-Koordinatenebene durchstößt.",
           "erwartungsbild": [
-            "Punktprobe: Ansatz \\( \\begin{pmatrix} 1 \\\\ 2 \\\\ 0 \\end{pmatrix} + t \\begin{pmatrix} 2 \\\\ 0 \\\\ 3 \\end{pmatrix} = \\begin{pmatrix} 5 \\\\ 6 \\\\ 4 \\end{pmatrix} \\) fuehrt auf drei Gleichungen fuer den einen Parameter \\( t \\).",
-            "Aus der ersten Zeile \\( 1 + 2t = 5 \\) folgt \\( t = 2 \\); die zweite Zeile \\( 2 + 0\\cdot t = 6 \\) liefert jedoch \\( 2 = 6 \\), was nicht erfuellbar ist (auch die dritte Zeile ergaebe \\( t = \\tfrac{4}{3} \\)).",
-            "Da das Gleichungssystem keine gemeinsame Loesung hat, liegt \\( A \\) nicht auf \\( g \\).",
-            "Besondere Lage: Der Richtungsvektor \\( \\vec{u}=\\begin{pmatrix} 2 \\\\ 0 \\\\ 3 \\end{pmatrix} \\) hat die \\( y \\)-Komponente \\( 0 \\); zudem ist die \\( y \\)-Koordinate jedes Geradenpunktes konstant gleich \\( 2 \\). Damit liegt \\( g \\) vollstaendig in der Ebene \\( y = 2 \\) und verlaeuft parallel zur \\( x\\text{-}z \\)-Koordinatenebene (Ebene \\( y=0 \\))."
+            "Richtungsvektor: \\( \\vec{AB} = B - A = \\begin{pmatrix} 2 \\\\ 4 \\\\ -2 \\end{pmatrix} \\); Geradengleichung z. B. \\( g:\\; \\vec{x} = \\begin{pmatrix} 2 \\\\ 1 \\\\ 5 \\end{pmatrix} + t\\begin{pmatrix} 2 \\\\ 4 \\\\ -2 \\end{pmatrix} \\).",
+            "Bedingung für die \\( x \\)-\\( y \\)-Ebene: Die \\( z \\)-Koordinate ist null. Dritte Zeile: \\( 5 - 2t = 0 \\Rightarrow t = \\tfrac{5}{2} \\).",
+            "Einsetzen von \\( t = \\tfrac{5}{2} \\) in die ersten beiden Zeilen: \\( x = 2 + 5 = 7 \\), \\( y = 1 + 10 = 11 \\). Durchstoßpunkt \\( S(7\\,|\\,11\\,|\\,0) \\).",
+            "Probe: \\( S \\) hat \\( z = 0 \\) (liegt in der \\( x \\)-\\( y \\)-Ebene) und erfüllt die Geradengleichung mit \\( t = \\tfrac{5}{2} \\).",
+            "Bewertung: Geradengleichung aufstellen ist AFB I; die Durchstoßbedingung selbstständig ansetzen ist AFB II."
           ],
           "afb": "I/II"
         },
         {
-          "frage": "Stellen Sie eine Koordinatengleichung der Ebene \\( E \\) auf, die die Gerade \\( g \\) und den Punkt \\( A\\begin{pmatrix} 5 \\\\ 6 \\\\ 4 \\end{pmatrix} \\) enthaelt. Verwenden Sie zur Bestimmung eines Normalenvektors das Kreuzprodukt und weisen Sie abschliessend nach, dass sowohl \\( g \\) als auch \\( A \\) in \\( E \\) liegen.",
+          "frage": "Gegeben ist außerdem die Gerade \\( h:\\; \\vec{x} = \\begin{pmatrix} 0 \\\\ -3 \\\\ 7 \\end{pmatrix} + s\\begin{pmatrix} 1 \\\\ 2 \\\\ -1 \\end{pmatrix} \\). Weisen Sie nach, dass \\( g \\) und \\( h \\) dieselbe Gerade beschreiben. Erläutern Sie dabei, welche zwei Nachweise dafür insgesamt erforderlich sind.",
           "erwartungsbild": [
-            "Zwei in \\( E \\) liegende Richtungsvektoren waehlen: den Richtungsvektor von \\( g \\), \\( \\vec{u}=\\begin{pmatrix} 2 \\\\ 0 \\\\ 3 \\end{pmatrix} \\), und den Verbindungsvektor vom Stuetzpunkt \\( P\\begin{pmatrix} 1 \\\\ 2 \\\\ 0 \\end{pmatrix} \\) der Geraden zu \\( A \\): \\( \\vec{PA}=A-P=\\begin{pmatrix} 4 \\\\ 4 \\\\ 4 \\end{pmatrix} \\).",
-            "Normalenvektor ueber das Kreuzprodukt: \\( \\vec{u}\\times\\vec{PA}=\\begin{pmatrix} 0\\cdot 4-3\\cdot 4 \\\\ 3\\cdot 4-2\\cdot 4 \\\\ 2\\cdot 4-0\\cdot 4 \\end{pmatrix}=\\begin{pmatrix} -12 \\\\ 4 \\\\ 8 \\end{pmatrix} \\); kuerzen durch \\( 4 \\) ergibt \\( \\vec{n}=\\begin{pmatrix} -3 \\\\ 1 \\\\ 2 \\end{pmatrix} \\) (gleichwertig \\( \\begin{pmatrix} 3 \\\\ -1 \\\\ -2 \\end{pmatrix} \\)).",
-            "Koordinatenform aus \\( \\vec{n}\\cdot\\vec{x}=\\vec{n}\\cdot P \\): mit \\( \\vec{n}=\\begin{pmatrix} 3 \\\\ -1 \\\\ -2 \\end{pmatrix} \\) gilt \\( \\vec{n}\\cdot P = 3\\cdot 1 - 1\\cdot 2 - 2\\cdot 0 = 1 \\), also \\( E:\\ 3x - y - 2z = 1 \\).",
-            "Nachweis \\( A\\in E \\): \\( 3\\cdot 5 - 6 - 2\\cdot 4 = 15-6-8 = 1 \\) (erfuellt). Nachweis \\( g\\subset E \\): Der Stuetzpunkt \\( P \\) liegt in \\( E \\) (\\( 3\\cdot 1-2-0=1 \\)) und \\( \\vec{n}\\cdot\\vec{u}=3\\cdot 2 -1\\cdot 0 -2\\cdot 3 = 0 \\), d. h. \\( \\vec{u} \\) verlaeuft parallel zu \\( E \\); also liegt ganz \\( g \\) in \\( E \\)."
+            "Erforderlich sind zwei Nachweise: (1) Die Richtungsvektoren sind kollinear (Vielfache voneinander) und (2) ein Punkt der einen Geraden liegt auf der anderen. Nur beides zusammen ergibt Identität — kollineare Richtungen allein ließen auch echte Parallelität zu.",
+            "Nachweis (1): \\( \\begin{pmatrix} 2 \\\\ 4 \\\\ -2 \\end{pmatrix} = 2\\cdot\\begin{pmatrix} 1 \\\\ 2 \\\\ -1 \\end{pmatrix} \\) — die Richtungsvektoren sind kollinear.",
+            "Nachweis (2), Punktprobe mit \\( A(2\\,|\\,1\\,|\\,5) \\) in \\( h \\): erste Zeile \\( 0 + s = 2 \\Rightarrow s = 2 \\); zweite Zeile \\( -3 + 2\\cdot 2 = 1 \\) (wahr); dritte Zeile \\( 7 - 2 = 5 \\) (wahr). Ein einziger Parameterwert \\( s = 2 \\) erfüllt alle drei Zeilen, also \\( A \\in h \\).",
+            "Folgerung: Gleiche Richtung und ein gemeinsamer Punkt — \\( g \\) und \\( h \\) sind identisch (zwei verschiedene Parameterdarstellungen derselben Geraden).",
+            "Bewertung: Das Wissen, dass BEIDE Nachweise nötig sind, und die saubere Punktprobe sind AFB II."
           ],
           "afb": "II"
         },
         {
-          "frage": "Geben Sie die Gleichung einer Geraden \\( h \\) an, die echt parallel zur Ebene \\( E:\\ 3x - y - 2z = 1 \\) verlaeuft (also parallel zu \\( E \\), aber nicht in \\( E \\) enthalten ist). Erlaeutern Sie, welche beiden Bedingungen Ihr Richtungsvektor und Ihr Stuetzpunkt dafuer erfuellen muessen, und weisen Sie beide Bedingungen fuer Ihre Wahl nach.",
+          "frage": "Untersuchen Sie die gegenseitige Lage der Geraden \\( k:\\; \\vec{x} = \\begin{pmatrix} 5 \\\\ 2 \\\\ 4 \\end{pmatrix} + r\\begin{pmatrix} 1 \\\\ 2 \\\\ -1 \\end{pmatrix} \\) und \\( g \\). Begründen Sie jeden Schritt.",
           "erwartungsbild": [
-            "Bedingung 1 (Richtung parallel zu \\( E \\)): Der Richtungsvektor \\( \\vec{v} \\) von \\( h \\) muss senkrecht auf dem Normalenvektor \\( \\vec{n}=\\begin{pmatrix} 3 \\\\ -1 \\\\ -2 \\end{pmatrix} \\) stehen, also \\( \\vec{n}\\cdot\\vec{v}=0 \\).",
-            "Bedingung 2 (nicht in \\( E \\)): Der Stuetzpunkt \\( Q \\) von \\( h \\) darf die Ebenengleichung nicht erfuellen, also \\( 3\\,Q_x - Q_y - 2\\,Q_z \\neq 1 \\); sonst laege \\( h \\) in \\( E \\).",
-            "Beispielwahl Richtungsvektor: \\( \\vec{v}=\\begin{pmatrix} 1 \\\\ 1 \\\\ 1 \\end{pmatrix} \\) mit \\( \\vec{n}\\cdot\\vec{v}=3-1-2=0 \\) (Bedingung 1 erfuellt).",
-            "Beispielwahl Stuetzpunkt: \\( Q\\begin{pmatrix} 8 \\\\ 5 \\\\ 2 \\end{pmatrix} \\) (z. B. \\( Q=A+\\vec{n} \\)) mit \\( 3\\cdot 8 - 5 - 2\\cdot 2 = 24-5-4 = 15 \\neq 1 \\) (Bedingung 2 erfuellt).",
-            "Ergebnis: \\( h:\\ \\vec{x}=\\begin{pmatrix} 8 \\\\ 5 \\\\ 2 \\end{pmatrix} + r\\begin{pmatrix} 1 \\\\ 1 \\\\ 1 \\end{pmatrix} \\) ist echt parallel zu \\( E \\)."
+            "Richtungsvektoren vergleichen: \\( k \\) hat denselben Richtungsvektor \\( \\begin{pmatrix} 1 \\\\ 2 \\\\ -1 \\end{pmatrix} \\) wie \\( g \\) (nach Kürzen), die Geraden sind also parallel; es bleibt zu klären: identisch oder echt parallel.",
+            "Punktprobe mit \\( A(2\\,|\\,1\\,|\\,5) \\in g \\) in \\( k \\): erste Zeile \\( 5 + r = 2 \\Rightarrow r = -3 \\); zweite Zeile \\( 2 + 2\\cdot(-3) = -4 \\neq 1 \\) — Widerspruch.",
+            "Da kein gemeinsamer Parameterwert existiert, liegt \\( A \\) nicht auf \\( k \\): Die Geraden sind echt parallel (parallel, aber ohne gemeinsame Punkte).",
+            "Hinweis zur Systematik: Bei kollinearen Richtungsvektoren entscheidet allein die Punktprobe zwischen 'identisch' und 'echt parallel'; ein Schnittpunkt-Ansatz ist hier überflüssig.",
+            "Bewertung: Vollständige, begründete Fallunterscheidung ist AFB II."
           ],
-          "afb": "II/III"
+          "afb": "II"
         },
         {
-          "frage": "Bestimmen Sie den Abstand der Geraden \\( h:\\ \\vec{x}=\\begin{pmatrix} 8 \\\\ 5 \\\\ 2 \\end{pmatrix} + r\\begin{pmatrix} 1 \\\\ 1 \\\\ 1 \\end{pmatrix} \\) zur Ebene \\( E:\\ 3x - y - 2z = 1 \\) mithilfe der HESSEschen Normalenform. Begruenden Sie, warum es genuegt, den Abstand eines einzigen Punktes von \\( h \\) zu berechnen.",
+          "frage": "Berechnen Sie den Abstand der beiden parallelen Geraden \\( g \\) und \\( k \\). Bestimmen Sie dazu den Lotfußpunkt von \\( A(2\\,|\\,1\\,|\\,5) \\) auf \\( k \\) über eine Orthogonalitätsbedingung und erläutern Sie, warum dieser eine Abstand bereits für alle Punktepaare der Geraden gilt.",
           "erwartungsbild": [
-            "Begruendung: Da \\( h \\) echt parallel zu \\( E \\) ist (siehe vorige Teilaufgabe), haben alle Punkte von \\( h \\) denselben Abstand zu \\( E \\); es genuegt daher, den Abstand des Stuetzpunktes \\( Q\\begin{pmatrix} 8 \\\\ 5 \\\\ 2 \\end{pmatrix} \\) zu bestimmen.",
-            "HESSEsche Normalenform von \\( E \\): Normalenvektor \\( \\vec{n}=\\begin{pmatrix} 3 \\\\ -1 \\\\ -2 \\end{pmatrix} \\) mit \\( |\\vec{n}|=\\sqrt{3^2+(-1)^2+(-2)^2}=\\sqrt{14} \\); damit \\( \\dfrac{3x - y - 2z - 1}{\\sqrt{14}} = 0 \\).",
-            "Abstand durch Einsetzen von \\( Q \\): \\( d = \\dfrac{|\\,3\\cdot 8 - 5 - 2\\cdot 2 - 1\\,|}{\\sqrt{14}} = \\dfrac{|15-1|}{\\sqrt{14}} = \\dfrac{14}{\\sqrt{14}} \\).",
-            "Vereinfachen: \\( d = \\dfrac{14}{\\sqrt{14}} = \\sqrt{14} \\approx 3{,}74 \\) (Laengeneinheiten)."
+            "Begründung vorab: Da \\( g \\) und \\( k \\) parallel sind, ist der Abstand zwischen ihnen überall gleich — es genügt, den Abstand EINES Punktes von \\( g \\) (z. B. \\( A \\)) zur Geraden \\( k \\) zu bestimmen.",
+            "Allgemeiner Punkt auf \\( k \\): \\( P(r) = \\begin{pmatrix} 5 + r \\\\ 2 + 2r \\\\ 4 - r \\end{pmatrix} \\); Verbindungsvektor \\( \\vec{AP} = \\begin{pmatrix} 3 + r \\\\ 1 + 2r \\\\ -1 - r \\end{pmatrix} \\).",
+            "Orthogonalitätsbedingung: \\( \\vec{AP} \\) muss senkrecht zum Richtungsvektor \\( \\vec{u} = \\begin{pmatrix} 1 \\\\ 2 \\\\ -1 \\end{pmatrix} \\) stehen: \\( \\vec{AP}\\cdot\\vec{u} = (3+r) + 2\\,(1+2r) + (1+r) = 6r + 6 = 0 \\Rightarrow r = -1 \\).",
+            "Lotfußpunkt: \\( F = P(-1) = (4\\,|\\,0\\,|\\,5) \\); Kontrolle: \\( \\vec{AF} = \\begin{pmatrix} 2 \\\\ -1 \\\\ 0 \\end{pmatrix} \\) mit \\( \\vec{AF}\\cdot\\vec{u} = 2 - 2 + 0 = 0 \\) (senkrecht, wie gefordert).",
+            "Abstand: \\( d = |\\vec{AF}| = \\sqrt{4 + 1 + 0} = \\sqrt{5} \\approx 2{,}24 \\) Längeneinheiten.",
+            "Bewertung: Den Lotfußpunkt-Ansatz über die Orthogonalitätsbedingung selbstständig aufstellen und die Übertragbarkeit auf alle Punktepaare begründen ist AFB III."
           ],
           "afb": "III"
         }

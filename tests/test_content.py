@@ -279,3 +279,81 @@ def test_kein_original():
                 treffer.append((ident, round(sim, 3), absatz[:80]))
                 break
     assert not treffer, f"Zu nah am Original (Jaccard >= {JACCARD_SCHWELLE}): {treffer}"
+
+
+# ---------------------------------------------------------------------------
+# Kein-Strukturklon-Test (Simulator)
+# ---------------------------------------------------------------------------
+# Hintergrund (Bug, Praxistest 2026-06): Der Jaccard-Test fing nur WOERTLICHE
+# Uebernahmen. Die Simulator-Items waren aber Struktur-Klone der Pruefung 2021
+# (gleiche Teilaufgaben-Folge, nur andere Zahlen) — ein Pruefer erkennt die
+# Original-Pruefung sofort wieder. Dieser Test prueft deshalb auf
+# AUFGABENTYP-KOMBINATIONEN: Jede Original-Pruefungssektion ist hier als Menge
+# abstrakter Aufgabentyp-Fingerprints kodiert (KEIN Originaltext, nur Typ-Labels
+# mit Erkennungs-Regexen — laeuft daher auch in CI ohne die gitignorten .docx).
+# Ein Fingerprint "trifft", wenn EINE EINZELNE Simulator-Frage alle Regexe des
+# Fingerprints enthaelt. Treffen >= 2 verschiedene Fingerprints DERSELBEN
+# Original-Sektion innerhalb EINES Simulator-Items, gilt das Item als
+# Strukturklon und der Test schlaegt fehl. Einzeltreffer sind erlaubt
+# (Standard-Aufgabentypen wie "Ebene aufstellen" kommen in jeder Pruefung vor).
+
+STRUKTUR_FINGERPRINTS = {
+    "2021-V1-Analysis": [
+        ("wendepunkt-notwendig-hinreichend", [r"notwendig", r"hinreichend", r"wende"]),
+        ("rotation-um-x-achse", [r"rotation"]),
+        ("parameter-genau-zwei-nullstellen", [r"genau\s+(zwei|2)\s+nullstellen"]),
+    ],
+    "2021-V1-Geometrie": [
+        ("besondere-lage-gerade", [r"besondere\w*\s+lage"]),
+        ("gerade-echt-parallel-zu-ebene", [r"echt\s+parallel", r"gerade", r"ebene"]),
+        ("abstand-hessesche-normalform", [r"hesse"]),
+    ],
+    "2021-V2-Geometrie": [
+        ("punkte-in-beiden-ebenen", [r"(jeweils|sowohl|beide)[^.?]{0,60}(in\s+beiden\s+ebenen|in\s+e_?\{?1\}?\s+als\s+auch\s+in\s+e_?\{?2\}?)"]),
+        ("alle-lagemoeglichkeiten-ebenen", [r"lagem(ö|oe)glichkeiten|(m(ö|oe)glichen\s+)?lagebeziehungen\s+zweier\s+ebenen"]),
+        ("weiterer-gemeinsamer-punkt", [r"(weiteren|verschiedenen)\s+gemeinsamen\s+punkt"]),
+        ("winkel-mit-koordinatenebene", [r"winkel", r"koordinatenebene|x-?y-ebene"]),
+    ],
+    "2021-V2-Analysis": [
+        ("eigenschaften-ohne-rechnung", [r"ohne\s+rechnung", r"(drei|3)\s+eigenschaften"]),
+        ("nullstellen-substitution", [r"substitution"]),
+        ("ableitungsgraph-extrema", [r"graph\w*\s+der\s+ableitungsfunktion"]),
+        ("steckbrief-lgs", [r"lineares?\s+gleichungssystem", r"funktionsgleichung|koeffizienten"]),
+    ],
+    "2017-Geometrie": [
+        ("drei-punkte-bestimmen-ebene", [r"drei\s+punkte", r"eigenschaft|bedingung|fordern"]),
+        ("ebenenschar", [r"schar"]),
+        ("schnittgerade-zweier-ebenen", [r"schnittgerade"]),
+    ],
+    "2017-Analysis": [
+        ("steckbrief-wp-waagerechte-tangente", [r"wendepunkt", r"waagerechte\s+tangente"]),
+        ("graph-skizzieren", [r"skizzieren"]),
+        ("tangente-flaeche", [r"tangente", r"fl(ä|ae)che"]),
+    ],
+}
+
+
+def _normalisiere_frage(text):
+    """LaTeX-Markup entfernen, klein schreiben — fuer die Fingerprint-Regexe."""
+    text = text.lower()
+    text = re.sub(r"\\\\?(begin|end)\{[a-z*]+\}", " ", text)
+    text = re.sub(r"\\\\?[a-z]+", " ", text)  # \tfrac, \mathbb, \( ...
+    text = re.sub(r"[\\(){}\[\]$|]", " ", text)
+    return re.sub(r"\s+", " ", text)
+
+
+@pytest.mark.parametrize("eintrag", CONTENT["simulator"])
+def test_simulator_keine_strukturklone(eintrag):
+    fragen = [_normalisiere_frage(ta.get("frage") or "")
+              for ta in eintrag.get("teilaufgaben", []) or []]
+    for sektion, fingerprints in STRUKTUR_FINGERPRINTS.items():
+        treffer = []
+        for name, regexe in fingerprints:
+            if any(all(re.search(rx, frage) for rx in regexe) for frage in fragen):
+                treffer.append(name)
+        assert len(treffer) < 2, (
+            f"Simulator-Item {eintrag['id']!r} ist ein Strukturklon der "
+            f"Original-Sektion {sektion!r}: Aufgabentyp-Treffer {treffer}. "
+            f"Hoechstens EIN Aufgabentyp pro Original-Sektion ist erlaubt — "
+            f"die Aufgabenfolge muss neu komponiert werden."
+        )

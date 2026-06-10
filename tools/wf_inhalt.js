@@ -95,16 +95,24 @@ const TOPICS = [
 
 // ---------------------------------------------------------------------------
 // Simulator-Aufgaben (4): je 2 pro Gebiet, vollstaendig & mehrteilig, pruefungsAEHNLICH (nie original)
+//
+// WICHTIG (Lehre aus Praxistest 2026-06): "nie original" heisst auch NIE DIE
+// AUFGABENFOLGE einer Originalpruefung uebernehmen. Die frueheren Vorgaben
+// hier hatten die Teilaufgaben-Struktur der Pruefung 2021 1:1 vorgeschrieben
+// (nur "EIGENE Zahlen") — ein Pruefer erkannte die Pruefung sofort wieder.
+// Die Aufgabenfolgen unten sind deshalb NEU KOMPONIERT; der Waechter
+// tests/test_content.py::test_simulator_keine_strukturklone schlaegt an,
+// wenn ein Item >= 2 Aufgabentypen derselben Original-Sektion kombiniert.
 // ---------------------------------------------------------------------------
 const SIMS = [
   { id: 'sim-ana-1', gebiet: 'analysis',
-    fokus: `Ganzrationale Funktion 3. Grades (EIGENE Koeffizienten). Teilaufgaben mit steigendem AFB: a) Eigenschaften ohne Rechnung (Symmetrie/Grenzverhalten/Nullstellenzahl) AFB I/II; b) Extrem- und Wendepunkt berechnen (f''-Kriterium fuer Extrema, f'''-Kriterium fuer den Wendepunkt) AFB II; c) Flaeche zwischen einer Tangente und dem Graphen (Vorgehensweise + Ansatz) AFB II/III; d) FUNKTIONENSCHAR f_k (z.B. Konstante +k) — Anzahl der Nullstellen in Abhaengigkeit von k bzw. k so bestimmen, dass der Graph genau 2 Nullstellen hat AFB III. Pro Teilaufgabe frage + erwartungsbild + afb.` },
+    fokus: `Ganzrationale Funktion 3. Grades mit doppelter Nullstelle (EIGENE Koeffizienten, faktorisierbar). a) Nullstellen durch Ausklammern/Faktorisieren + Deutung der Vielfachheit (Schneiden vs. Beruehren) AFB I/II; b) Monotonieintervalle ueber Vorzeichen von f' und daraus Extrema folgern (Monotoniekriterium statt f''-Kriterium) AFB II; c) mittlere vs. momentane Aenderungsrate (Sekante/Tangente) berechnen und vergleichen AFB II; d) Flaeche zwischen Graph und x-Achse inkl. Vorzeichenbegruendung ueber die Faktorisierung AFB II/III. Pro Teilaufgabe frage + erwartungsbild + afb.` },
   { id: 'sim-ana-2', gebiet: 'analysis',
-    fokus: `Ganzrationale Funktion 4. Grades, biquadratisch (EIGENE Koeffizienten). a) drei Eigenschaften ohne Rechnung (Symmetrie zur y-Achse, y-Achsenabschnitt, maximale Anzahl Nullstellen/Extrema) AFB I/II; b) Nullstellen per SUBSTITUTION x^2=z bestimmen AFB II; c) ROTATIONSVOLUMEN eines begrenzten Bereichs um die x-Achse (Vorgehensweise + Ansatz V=pi*Integral f(x)^2 dx) AFB II/III; d) REKONSTRUKTION einer ganzrationalen Funktion 3. Grades aus Eigenschaften (LGS aufstellen) AFB II/III. Pro Teilaufgabe frage + erwartungsbild + afb.` },
+    fokus: `ANWENDUNGSKONTEXT Zuflussrate (ganzrationale Ratenfunktion 3. Grades, EIGENE Koeffizienten, Definitionsintervall). a) Nullstellen der Rate + Modellgrenzen im Sachzusammenhang begruenden AFB I/II; b) Zeitpunkt maximaler Rate mit Nachweis und Randvergleich AFB II; c) Gesamtmenge als Integral ueber die Rate (Hauptsatz: Rekonstruktion des Bestands) AFB II/III; d) Zeitpunkt staerkster Zunahme der Rate (Maximum von z', Wendestelle im Kontext) AFB III. Pro Teilaufgabe frage + erwartungsbild + afb.` },
   { id: 'sim-geo-1', gebiet: 'geometrie',
-    fokus: `Zwei Ebenen E1, E2 in Koordinatenform (EIGENE Zahlen) sowie zwei Punkte. a) nachweisen, dass beide Punkte in beiden Ebenen liegen, und auf die Lagebeziehung schliessen AFB I/II; b) alle Lagemoeglichkeiten zweier Ebenen angeben und erlaeutern, wie E2 zu aendern waere AFB II; c) Schnittgerade bzw. einen weiteren gemeinsamen Punkt bestimmen AFB II/III; d) Winkel zwischen E1 und einer Koordinatenebene berechnen AFB II/III. Pro Teilaufgabe frage + erwartungsbild + afb.` },
+    fokus: `KOERPER-Kontext: dreiseitige Pyramide aus Ursprung + drei Achsenpunkten (EIGENE Zahlen). a) Nachweis: Dreieck ABC gleichseitig (Verbindungsvektoren, Betraege) AFB I/II; b) Koordinatengleichung der Ebene durch A, B, C (Kreuzprodukt, Punktprobe) AFB II; c) Pyramidenvolumen elementargeometrisch (geschickte Grundflaechen-Wahl, Hoehe ablesbar) AFB II; d) Lotgerade vom Ursprung auf E, Lotfusspunkt, Abstand + Konsistenzpruefung V = 1/3 * A_ABC * d AFB III. Pro Teilaufgabe frage + erwartungsbild + afb.` },
   { id: 'sim-geo-2', gebiet: 'geometrie',
-    fokus: `Eine Gerade g und ein Punkt A im R^3 (EIGENE Zahlen). a) Punktprobe A auf g und besondere Lage von g angeben/begruenden AFB I/II; b) Ebene E aus g und A in Koordinatenform aufstellen (Kreuzprodukt) AFB II; c) eine Gerade h angeben, die echt parallel zu E liegt (Richtungsvektor mit n.u=0, Stuetzpunkt nicht in E) AFB II/III; d) Abstand der Geraden h zur Ebene E ueber die HESSEsche Normalform bestimmen AFB III. Pro Teilaufgabe frage + erwartungsbild + afb.` },
+    fokus: `Lage von GERADEN zueinander (EIGENE Zahlen). a) Gerade g durch zwei Punkte aufstellen + Durchstosspunkt mit der x-y-Koordinatenebene AFB I/II; b) Nachweis: zweite Parameterdarstellung h beschreibt DIESELBE Gerade (kollineare Richtung + Punktprobe) AFB II; c) gegenseitige Lage einer dritten Geraden k zu g (echt parallel, begruendete Fallunterscheidung) AFB II; d) Abstand der parallelen Geraden ueber Lotfusspunkt/Orthogonalitaetsbedingung AFB III. Pro Teilaufgabe frage + erwartungsbild + afb.` },
 ]
 
 // ---------------------------------------------------------------------------
