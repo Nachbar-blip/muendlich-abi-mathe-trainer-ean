@@ -1259,6 +1259,11 @@
         break;
     }
 
+    // Vor dem DOM-Austausch eine evtl. laufende Aufnahme beenden: ihr Button
+    // wird gleich ersetzt — sonst liefe der Recorder unsichtbar weiter und das
+    // Mikrofon bliebe an, ohne Stopp-Möglichkeit.
+    stoppeAktiveAufnahme();
+
     app.innerHTML = html;
 
     // Nach jedem Render: Event-Handler binden und Mathe rendern.
@@ -1318,7 +1323,10 @@
       var ziel = richtung === 'rauf' ? pos - 1 : pos + 1;
       if (ziel < 0 || ziel >= r.length) return;
       var tmp = r[pos]; r[pos] = r[ziel]; r[ziel] = tmp;
-      sitzung.geprueft = false; // Umsortieren setzt eine alte Prüfung zurück
+      // Umsortieren setzt eine alte Prüfung VOLLSTÄNDIG zurück. Bliebe korrekt
+      // auf true, verschwänden Prüfen-Button UND Weiter-Link gleichzeitig.
+      sitzung.geprueft = false;
+      sitzung.korrekt = false;
       render();
     });
     aufKlick('btn-pruefen', function () {
@@ -1616,6 +1624,23 @@
   // erzeugt nach Stopp ein <audio>-Element zum Zurückhören. Bei fehlendem
   // API / abgelehnter Erlaubnis: deaktivierter Knopf + dezenter Hinweis.
   // ---------------------------------------------------------------------------
+  // Aktive Aufnahme (Stream + Recorder) modulweit merken: Ein Re-Render ersetzt
+  // den Aufnahme-Container im DOM — ohne diesen Merker liefe der Recorder
+  // unsichtbar weiter und das Mikrofon bliebe bis zum Reload an.
+  var aktiveAufnahme = null;
+
+  function stoppeAktiveAufnahme() {
+    if (!aktiveAufnahme) return;
+    var a = aktiveAufnahme;
+    aktiveAufnahme = null;
+    try {
+      if (a.recorder && a.recorder.state !== 'inactive') a.recorder.stop();
+    } catch (e) { /* egal */ }
+    try {
+      if (a.stream) a.stream.getTracks().forEach(function (t) { t.stop(); });
+    } catch (e) { /* egal */ }
+  }
+
   function aufnahmeControl(containerEl) {
     if (!containerEl) return;
     // Doppelte Initialisierung vermeiden (Re-Render bindet erneut).
@@ -1654,6 +1679,9 @@
     var laeuft = false;
 
     function aufraeumen() {
+      // Globalen Merker nur löschen, wenn er noch auf DIESE Aufnahme zeigt
+      // (inzwischen könnte ein neues Control eine neue Aufnahme halten).
+      if (aktiveAufnahme && aktiveAufnahme.stream === stream) aktiveAufnahme = null;
       try {
         if (stream) stream.getTracks().forEach(function (t) { t.stop(); });
       } catch (e) { /* egal */ }
@@ -1697,6 +1725,9 @@
           btn.classList.remove('aufnahme-laeuft');
           btn.textContent = '● Aufnahme starten';
           btn.disabled = false;
+          // Container kann durch ein Re-Render bereits ersetzt sein — dann gibt
+          // es nichts mehr anzuzeigen, nur noch Mikro/Stream freigeben.
+          if (!document.contains(containerEl)) { aufraeumen(); return; }
           try {
             var blob = new Blob(chunks, { type: recorder && recorder.mimeType ? recorder.mimeType : 'audio/webm' });
             var url = URL.createObjectURL(blob);
@@ -1717,6 +1748,7 @@
           aufraeumen();
         };
         recorder.start();
+        aktiveAufnahme = { recorder: recorder, stream: stream };
         laeuft = true;
         btn.disabled = false;
         btn.classList.add('aufnahme-laeuft');
