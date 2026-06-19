@@ -13,7 +13,7 @@ from docx.enum.text import WD_ALIGN_PARAGRAPH
 ROOT = Path(__file__).resolve().parent.parent
 URL = "https://nachbar-blip.github.io/muendlich-abi-mathe-trainer-ean/"
 # "hier" = aktueller Arbeitsordner des Nutzers (GAN-Projekt), nicht das EAN-Repo.
-OUT = Path("C:/DevProjects/schule/zzz_TOP/mündlich ABI") / "QR Muendlich-Abi Mathe Trainer EAN.docx"
+OUT = Path("C:/DevProjects/schule/Trainer-Lokal/muendlich-Abi") / "QR Muendlich-Abi Mathe Trainer EAN.docx"
 
 # QR-Bild erzeugen
 qr = qrcode.QRCode(version=None, error_correction=ERROR_CORRECT_M, box_size=12, border=2)
